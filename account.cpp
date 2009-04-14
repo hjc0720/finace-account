@@ -49,6 +49,7 @@ void account::load(ifstream& inFile)
 		record loadRecord;
 		loadRecord.load(inFile);
 		m_vRecord.push_back(loadRecord);
+		calculate(loadRecord);
 	}
 }
 
@@ -58,4 +59,15 @@ void account::print(ostream& out)
 
 	for(unsigned i = 0; i < m_vRecord.size();i++)
 		m_vRecord[i].print(out);
+}
+
+void account::calculate(const record& newRecord)
+{
+	m_left = m_left + newRecord.GetIncome() - newRecord.GetPay();
+}
+
+void account::addRecord(const record& newRecord)
+{
+	m_vRecord.push_back(newRecord);
+	calculate(newRecord);
 }
