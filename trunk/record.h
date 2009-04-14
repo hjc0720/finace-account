@@ -29,5 +29,7 @@ class record
 		void save(ofstream& outFile);
 		void load(ifstream& inFile);
 		void print(ostream& out);
+		long GetIncome()const{return m_income;};
+		long GetPay() const {return m_pay;};
 };
 #endif

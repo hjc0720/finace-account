@@ -11,7 +11,7 @@ class account{
 		string m_name;
 		long m_initialCash;
 		long m_left;
-		void calculate(record& newRecord);
+		inline void calculate(const record& newRecord);
 	public:
 		account();
 		account(string name,int initialCash);
@@ -19,5 +19,6 @@ class account{
 		void save(ofstream& outFile);
 		void load(ifstream& inFile);
 		void print(ostream& out);
+		void addRecord(const record& newRecord);
 };
 #endif
