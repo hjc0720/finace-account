@@ -45,6 +45,7 @@ void record::load(ifstream& inFile)
 //	readString[stringSize] = '\0';
 	m_remark.clear();
 	m_remark.append(readString,stringSize);
+	delete []readString;
 }
 
 void record::print(ostream& out)
