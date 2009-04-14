@@ -2,13 +2,16 @@
 #define ACCOUNT_H_HJC20090409
 #include "record.h"
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class account{
 	private:
 		vector<record> m_vRecord;
 		string m_name;
-		unsigned long m_initialCash;
+		long m_initialCash;
+		long m_left;
+		void calculate(record& newRecord);
 	public:
 		account();
 		account(string name,int initialCash);
