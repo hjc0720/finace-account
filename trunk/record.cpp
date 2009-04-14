@@ -47,7 +47,7 @@ void record::load(ifstream& inFile)
 	m_remark.append(readString,stringSize);
 }
 
-void record::print()
+void record::print(ostream& out)
 {
-	cout << m_remark<<endl;
+	out << m_remark<<endl;
 }
