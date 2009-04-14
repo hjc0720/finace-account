@@ -13,7 +13,7 @@ int main()
 	//test.save(infile);
 	test.load(outfile);
 	outfile.close();
-	test.print();
+	test.print(cout);
 	return 1;
 }
 
