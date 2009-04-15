@@ -1,4 +1,5 @@
 #include "account.h"
+#include <algorithm>
 
 account::account()
 {
@@ -71,3 +72,16 @@ void account::addRecord(const record& newRecord)
 	m_vRecord.push_back(newRecord);
 	calculate(newRecord);
 }
+
+void account::reCalculate()
+{
+	m_left = m_initialCash;
+	for(int i = 0; i < m_vRecord.size(); i++)
+		calculate(m_vRecord[i]);
+}
+
+void account::sortRecord()
+{
+	sort(m_vRecord.begin(),m_vRecord.end());
+}
+
