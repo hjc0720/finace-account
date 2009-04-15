@@ -20,5 +20,7 @@ class account{
 		void load(ifstream& inFile);
 		void print(ostream& out);
 		void addRecord(const record& newRecord);
+		void reCalculate();
+		void sortRecord();
 };
 #endif

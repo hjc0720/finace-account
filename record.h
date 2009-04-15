@@ -31,5 +31,6 @@ class record
 		void print(ostream& out);
 		long GetIncome()const{return m_income;};
 		long GetPay() const {return m_pay;};
+		bool operator<( record const& rhs) const;
 };
 #endif

@@ -52,3 +52,10 @@ void record::print(ostream& out)
 {
 	out << m_remark<<endl;
 }
+
+bool record::operator<(record const & rhs) const
+{
+	if(m_date < rhs.m_date)
+		return true;
+	return false;
+}
