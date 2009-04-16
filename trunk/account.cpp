@@ -59,7 +59,10 @@ void account::print(ostream& out)
 	out << m_name << endl;
 
 	for(unsigned i = 0; i < m_vRecord.size();i++)
+	{
 		m_vRecord[i].print(out);
+		out << m_vRecordLeft[i] <<endl;
+	}
 }
 
 void account::calculate(const record& newRecord)
@@ -70,18 +73,22 @@ void account::calculate(const record& newRecord)
 void account::addRecord(const record& newRecord)
 {
 	m_vRecord.push_back(newRecord);
-	calculate(newRecord);
+	sortRecord();
 }
 
 void account::reCalculate()
 {
 	m_left = m_initialCash;
-	for(int i = 0; i < m_vRecord.size(); i++)
+	m_vRecordLeft.clear();
+	for(unsigned int i = 0; i < m_vRecord.size(); i++)
+	{
 		calculate(m_vRecord[i]);
+		m_vRecordLeft.push_back(m_left);
+	}
 }
 
 void account::sortRecord()
 {
 	sort(m_vRecord.begin(),m_vRecord.end());
+	reCalculate();
 }
-

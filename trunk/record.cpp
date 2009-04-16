@@ -50,7 +50,7 @@ void record::load(ifstream& inFile)
 
 void record::print(ostream& out)
 {
-	out << m_remark<<endl;
+		out << m_income<<endl;
 }
 
 bool record::operator<(record const & rhs) const

@@ -8,6 +8,7 @@ using namespace std;
 class account{
 	private:
 		vector<record> m_vRecord;
+		vector<long>   m_vRecordLeft;
 		string m_name;
 		long m_initialCash;
 		long m_left;
