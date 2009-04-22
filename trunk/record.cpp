@@ -1,6 +1,9 @@
 #include "record.h"
 #include <fstream>
 #include <iostream>
+#include "basefunction.h"
+
+
 using namespace std;
 
 record::record()
@@ -50,7 +53,11 @@ void record::load(ifstream& inFile)
 
 void record::print(ostream& out)
 {
-		out << m_income<<endl;
+	out << dateToString(m_date) << endl;
+	out << m_type << endl;
+	out << m_income<<endl;
+	out << m_pay << endl;
+	out << m_remark << endl;
 }
 
 bool record::operator<(record const & rhs) const
