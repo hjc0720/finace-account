@@ -13,6 +13,8 @@ int main()
 		bank.load(infile);
 		cash.load(infile);
 	}
+	cout << bank.getName() << "\t余额：" <<bank.getLeft() << endl;
+	cout << cash.getName() << "\t余额：" <<cash.getLeft() << endl;
 	return 1;
 }
 

@@ -23,5 +23,7 @@ class account{
 		void addRecord(const record& newRecord);
 		void reCalculate();
 		void sortRecord();
+		string getName(){ return m_name;};
+		long getLeft(){return m_left;};
 };
 #endif
