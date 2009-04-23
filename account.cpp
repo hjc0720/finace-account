@@ -11,7 +11,7 @@ account::~account()
 {
 }
 
-account::account(string name, int initialCash)
+account::account(string name, int initialCash/*= 0*/)
 {
 	m_name = name;
 	m_initialCash = initialCash;

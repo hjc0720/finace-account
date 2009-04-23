@@ -1,19 +1,18 @@
-#include "record.h"
+#include "account.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 int main()
 {
-	record test;
-	string str;
-	cin >> str;
-	test.initial(1,1,1,1,str);
-	//ofstream infile("test");
-	ifstream outfile("test");
-	//test.save(infile);
-	test.load(outfile);
-	outfile.close();
-	test.print(cout);
+	account bank("银行卡");
+	account cash("现金");
+	ifstream infile;
+	infile.open("accountRecord");
+	if(infile)
+	{
+		bank.load(infile);
+		cash.load(infile);
+	}
 	return 1;
 }
 
