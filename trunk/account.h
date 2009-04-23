@@ -15,7 +15,7 @@ class account{
 		inline void calculate(const record& newRecord);
 	public:
 		account();
-		account(string name,int initialCash);
+		account(string name,int initialCash = 0);
 		~account();
 		void save(ofstream& outFile);
 		void load(ifstream& inFile);
