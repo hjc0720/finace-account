@@ -3,4 +3,6 @@
 
 int showMainMenu();
 
+int showRecord();
+
 #endif
