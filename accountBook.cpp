@@ -1,3 +1,4 @@
+#include "menu.h"
 #include "account.h"
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,8 @@ int main()
 	}
 	cout << bank.getName() << "\t余额：" <<bank.getLeft() << endl;
 	cout << cash.getName() << "\t余额：" <<cash.getLeft() << endl;
+
+	int select = showMainMenu();
 	return 1;
 }
 
