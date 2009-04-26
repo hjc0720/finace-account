@@ -2,6 +2,7 @@ CC = gcc
 
 XX = g++
 CFLAGS = -Wall -g
+#CFLAGS = -Wall -O2
 
 TARGET = ./accountbook
 

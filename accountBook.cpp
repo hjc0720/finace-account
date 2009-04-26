@@ -31,12 +31,21 @@ int main()
 	}
 	cout << bank.getName() << "\t余额：" <<bank.getLeft() << endl;
 	cout << cash.getName() << "\t余额：" <<cash.getLeft() << endl;
-	int select = showMainMenu();
-	while(select != 0)
+	CMenu* mainMenu = initialMainMenu();
+	CMenu* nowMenu = mainMenu;
+	int select = -1;
+	do
 	{
-		selectMainMenu(select);
-		select = showMainMenu();
-	}
+		select = nowMenu->showSubMenu();
+		nowMenu->selectSubMenu(select,&nowMenu);
+	}while(nowMenu);
+	delete mainMenu;
+//	int select = showMainMenu();
+//	while(select != 0)
+//	{
+//		selectMainMenu(select);
+//		select = showMainMenu();
+//	}
 	return 1;
 }
 
