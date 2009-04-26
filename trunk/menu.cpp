@@ -2,6 +2,19 @@
 #include <iostream>
 using namespace std;
 
+void mainQuitFun(CMenu** nowMenu)
+{
+	*nowMenu = (*nowMenu)->getParent();
+}
+
+CMenu* initialMainMenu()
+{
+	CMenu* mainMenu = new CMenu("mainMenu");
+	CMenu* mainQuit = new CMenu("退出",mainQuitFun);
+	mainMenu->addSubMenu(mainQuit);
+	return mainMenu;
+}
+
 int showMainMenu()
 {
 	int i = -1;
@@ -38,7 +51,8 @@ CMenu::CMenu(const string& menuName, menuFun pMenuFun /* = NULL*/)
 {
 	m_menuName = menuName;
 	m_fun = pMenuFun ;
-}
+	m_parent = NULL; 
+} 
 
 CMenu::~CMenu()
 {
@@ -50,6 +64,7 @@ CMenu::~CMenu()
 void CMenu::addSubMenu(CMenu* subMenu)
 {
 	m_subMenu.push_back(subMenu);
+	subMenu->setParent(this);
 }
 
 void CMenu::delSubMenu(string& subMenuName)
@@ -92,6 +107,9 @@ void CMenu::selectSubMenu(int select,CMenu** nowMenu)
 	int subCount = m_subMenu.size();
 	if(select < 0 || select >= subCount)
 		return;
-	m_subMenu[select]->m_fun(nowMenu);
+	if(m_subMenu[select]->m_subMenu.size() > 0)
+		*nowMenu = m_subMenu[select];
+	else if(m_subMenu[select]->m_fun)
+		m_subMenu[select]->m_fun(nowMenu);
 }
 
