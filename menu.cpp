@@ -95,6 +95,7 @@ int CMenu::showSubMenu()
 	do{
 		for(int i = 0; i < subCount; i++)
 			cout<<i<<"、 "<<m_subMenu[i]->getString()<<endl;
+		cout << "请选择菜单:";
 		cin>>select;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
