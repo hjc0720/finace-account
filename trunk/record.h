@@ -12,6 +12,7 @@ enum payIncomeType{
 	PayForRestaurant,
 	PayForClothes,
 	PayForComunicate,
+	PayIncomeTypeCount,
 };
 
 class record

@@ -1,17 +1,85 @@
 #include "menu.h"
 #include <iostream>
+#include "account.h"
+#include "record.h"
+#include "basefunction.h"
 using namespace std;
-
+extern account g_bank;
+extern account g_cash;
+extern string typeString[PayIncomeTypeCount];
+	
 void mainQuitFun(CMenu** nowMenu)
 {
 	*nowMenu = (*nowMenu)->getParent();
 }
 
+void addRecord(CMenu** nowMenu)
+{
+	int nAccount = 0;
+	do{
+		cout<<"1、"<<g_bank.getName()<< endl;
+		cout<<"2、"<<g_cash.getName() << endl;
+		cout<<"请选择帐号：";
+		cin >> nAccount;
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+	}while(nAccount < 1 || nAccount > 2);
+	account* selectAccount = NULL;
+	switch(nAccount)
+	{
+		case 1:
+			selectAccount = &g_bank;
+			break;
+		case 2:
+			selectAccount = &g_cash;
+			break;
+	}
+	record newRecord;
+	unsigned long date;
+	long pay;
+	unsigned char type;
+	long income;
+	string remark;
+	do{
+		string date_string;
+		cout << "请输入日期(yyyy-month-day):";
+		cin >> date_string;
+		date = stringToDate(date_string);
+	}while(date == 0);
+
+	do{
+		for(int i = 0; i < PayIncomeTypeCount; i++)
+			cout<<i + 1 <<"、 "<<typeString[i]<<endl;
+		cout <<"请选择支付类型：";
+		cin >> type;
+		type = type - '0';
+	}while(type == 0 || type > PayIncomeTypeCount); 
+
+	do{
+		cout << "请输入支付金额：";
+		cin >> pay;
+	}while(cin.fail());
+
+	do{
+		cout << "请输入收入金额：";
+		cin >> income;
+	}while(cin.fail());
+
+	cout << "请输入备注";
+	cin >> remark;
+
+	newRecord.initial(date,pay,type,income,remark);
+	selectAccount->addRecord(newRecord);
+}
 CMenu* initialMainMenu()
 {
 	CMenu* mainMenu = new CMenu("mainMenu");
 	CMenu* mainQuit = new CMenu("退出",mainQuitFun);
 	mainMenu->addSubMenu(mainQuit);
+
+	CMenu* addRecordMenu = new CMenu("添加记录",addRecord);
+	mainMenu->addSubMenu(addRecordMenu);
+
 	return mainMenu;
 }
 
