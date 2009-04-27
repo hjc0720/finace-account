@@ -12,9 +12,11 @@ string dateToString(unsigned long date)
 unsigned long stringToDate(const string& dateString)
 {
 	char dump;
-	int nYear,nMonth,nDay;
+	unsigned long nYear,nMonth,nDay;
 	istringstream dateStream(dateString);
-	dateStream >> nYear >> dump >> nMonth >> nDay;
+	dateStream >> nYear >> dump >> nMonth >> dump >> nDay;
+	if(dateStream.fail())
+		return 0;
 	return getDate(nYear,nMonth,nDay);
 }
 inline unsigned long getYear(unsigned long date)

@@ -6,6 +6,18 @@
 
 using namespace std;
 
+string typeString[PayIncomeTypeCount] = 
+{
+	"老婆给的",
+	"从卡里取的",
+	"工资",
+	"生活用品",
+	"日常饮食",
+	"餐馆消费",
+	"商场消费",
+	"通讯费",
+};
+
 record::record()
 {
 	m_remark.clear();
