@@ -19,11 +19,12 @@ void addRecord(CMenu** nowMenu)
 	do{
 		cout<<"1、"<<g_bank.getName()<< endl;
 		cout<<"2、"<<g_cash.getName() << endl;
+		cout<<"0、返回"<<endl;
 		cout<<"请选择帐号：";
 		cin >> nAccount;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-	}while(nAccount < 1 || nAccount > 2);
+	}while(nAccount < 0 || nAccount > 2);
 	account* selectAccount = NULL;
 	switch(nAccount)
 	{
@@ -33,6 +34,8 @@ void addRecord(CMenu** nowMenu)
 		case 2:
 			selectAccount = &g_cash;
 			break;
+		case 0:
+			return;
 	}
 	record newRecord;
 	unsigned long date;
@@ -71,6 +74,45 @@ void addRecord(CMenu** nowMenu)
 	newRecord.initial(date,pay,type,income,remark);
 	selectAccount->addRecord(newRecord);
 }
+
+void viewCurrentMonth(CMenu** nowMenu)
+{
+	time_t ltime;
+	time(&ltime);
+	tm* t;
+	t = gmtime(&ltime);
+	unsigned long date = getDate(t->tm_year + 1900, t->tm_mon + 1,1); 
+	int bank_start,bank_end,cash_start,cash_end;
+	g_bank.getMonthStartEnd(date,bank_start,bank_end);
+	for(int i = bank_start; i <= bank_end; i++)
+	{
+		g_bank.getRecordAt(i).print(cout);
+	}
+	g_cash.getMonthStartEnd(date,cash_start,cash_end);
+	for(int i = cash_start; i <= cash_end; i++)
+	{
+		g_cash.getRecordAt(i).print(cout);
+	}
+	getchar();
+}
+CMenu* initialViewRecord()
+{
+	CMenu* viewRecord = new CMenu("查看记录");
+
+	CMenu* returnMenu = new CMenu("返回上一级目录",mainQuitFun);
+	viewRecord->addSubMenu(returnMenu);
+
+	CMenu* currentRecord = new CMenu("查看当月全部记录",viewCurrentMonth);
+	viewRecord->addSubMenu(currentRecord);
+
+	CMenu* setRecord = new CMenu("查看指定时间记录");
+	viewRecord->addSubMenu(setRecord);
+
+	CMenu* dayRecord = new CMenu("查看某天的记录");
+	viewRecord->addSubMenu(dayRecord);
+
+	return viewRecord;
+}
 CMenu* initialMainMenu()
 {
 	CMenu* mainMenu = new CMenu("mainMenu");
@@ -80,22 +122,8 @@ CMenu* initialMainMenu()
 	CMenu* addRecordMenu = new CMenu("添加记录",addRecord);
 	mainMenu->addSubMenu(addRecordMenu);
 
+	mainMenu->addSubMenu(initialViewRecord());
 	return mainMenu;
-}
-
-int showMainMenu()
-{
-	int i = -1;
-	do{
-		cout << "1、查看记录"<<endl;
-		cout << "2、添加记录"<<endl;
-		cout << "0、退出"<<endl;
-		cout << "请选择菜单:";
-		cin >> i;
-		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-	}while(i < 0 || i > 2);
-	return i;
 }
 
 int showRecord()

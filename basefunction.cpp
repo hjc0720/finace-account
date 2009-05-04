@@ -5,7 +5,7 @@ const unsigned long monthOfDay[12]={31,29,31,30,31,30,31,31,30,31,30,31};
 string dateToString(unsigned long date)
 {
 	ostringstream dateStream;
-	dateStream << getYear(date) << "-" << getMonth(date) << "-" << getDay(date) << endl;
+	dateStream << getYear(date) << "-" << getMonth(date) << "-" << getDay(date) ;
 	return dateStream.str();
 }
 
@@ -19,12 +19,13 @@ unsigned long stringToDate(const string& dateString)
 		return 0;
 	return getDate(nYear,nMonth,nDay);
 }
-inline unsigned long getYear(unsigned long date)
+
+unsigned long getYear(unsigned long date)
 {
 	return date / 366;
 }
 
-inline unsigned long getMonth(unsigned long date)
+unsigned long getMonth(unsigned long date)
 {
 	unsigned long dayOfYear = date % 366;
 	int i = 0;
@@ -36,7 +37,7 @@ inline unsigned long getMonth(unsigned long date)
 	return ++i;
 }
 
-inline unsigned long getDay(unsigned long date)
+unsigned long getDay(unsigned long date)
 {
 	unsigned long dayOfYear = date % 366;
 	int i = 0;

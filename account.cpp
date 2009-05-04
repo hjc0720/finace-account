@@ -1,5 +1,6 @@
 #include "account.h"
 #include <algorithm>
+#include "basefunction.h"
 
 account::account()
 {
@@ -91,4 +92,27 @@ void account::sortRecord()
 {
 	sort(m_vRecord.begin(),m_vRecord.end());
 	reCalculate();
+}
+
+void account::getMonthStartEnd(unsigned long date, int& start, int& end)
+{
+	unsigned long year,month;
+	year = getYear(date);
+	month = getMonth(date);
+	unsigned long startDate = getDate(year,month,1);
+	unsigned long endDate = getDate(year,month+1,1);
+//	reCalculate();
+	int nCount = m_vRecord.size(),i;
+	for(i = 0; i < nCount; i++)
+	{
+		if(m_vRecord[i].GetDate() >= startDate)
+			break;
+	}
+	start = i;
+	for(;i < nCount; i++)
+	{
+		if(m_vRecord[i].GetDate() >= endDate)
+			break;
+	}
+	end = --i;
 }
