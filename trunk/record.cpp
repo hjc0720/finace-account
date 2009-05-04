@@ -65,10 +65,10 @@ void record::load(ifstream& inFile)
 
 void record::print(ostream& out)
 {
-	out << dateToString(m_date) << endl;
-	out << m_type << endl;
-	out << m_income<<endl;
-	out << m_pay << endl;
+	out << dateToString(m_date)<< '\t';
+	out << typeString[m_type] << '\t';
+	out << m_pay << '\t';
+	out << m_income<< '\t';
 	out << m_remark << endl;
 }
 

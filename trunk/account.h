@@ -24,6 +24,10 @@ class account{
 		void reCalculate();
 		void sortRecord();
 		string getName(){ return m_name;};
-		long getLeft(){return m_left;};
+		long getTotalLeft(){return m_left;};
+		record getRecordAt(int i){return m_vRecord[i];};
+		long getLeftAt(int i){ return m_vRecordLeft[i];};
+		void getMonthStartEnd(unsigned long date, int& start, int& end);
+
 };
 #endif
