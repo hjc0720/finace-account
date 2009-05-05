@@ -12,6 +12,7 @@ enum payIncomeType{
 	PayForRestaurant,
 	PayForClothes,
 	PayForComunicate,
+	GetCash,
 	PayIncomeTypeCount,
 };
 
@@ -19,14 +20,15 @@ class record
 {
 	private:
 		unsigned long m_date;
-		long m_pay;
-		long m_income;
+		unsigned long m_pay;
+		unsigned long m_income;
 		unsigned char m_type;
 		string m_remark;
 	public:
 		record();
 		~record();
-		void initial(unsigned long date, long pay, unsigned char type, long income, const string& remark);
+
+		void initial(unsigned long date, unsigned long pay, unsigned char type,unsigned long income, const string& remark);
 		void save(ofstream& outFile);
 		void load(ifstream& inFile);
 		void print(ostream& out);

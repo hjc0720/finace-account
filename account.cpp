@@ -51,8 +51,8 @@ void account::load(ifstream& inFile)
 		record loadRecord;
 		loadRecord.load(inFile);
 		m_vRecord.push_back(loadRecord);
-		calculate(loadRecord);
 	}
+	reCalculate();
 }
 
 void account::print(ostream& out)
