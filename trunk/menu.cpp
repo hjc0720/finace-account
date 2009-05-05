@@ -39,9 +39,10 @@ void addRecord(CMenu** nowMenu)
 	}
 	record newRecord;
 	unsigned long date;
-	long pay;
+	long pay = 0;
 	unsigned char type;
-	long income;
+	long income = 0;
+	float sum;
 	string remark;
 	do{
 		string date_string;
@@ -55,24 +56,26 @@ void addRecord(CMenu** nowMenu)
 			cout<<i + 1 <<"、 "<<typeString[i]<<endl;
 		cout <<"请选择支付类型：";
 		cin >> type;
-		type = type - '0';
+		type = type - '1';
 	}while(type == 0 || type > PayIncomeTypeCount); 
 
 	do{
-		cout << "请输入支付金额：";
-		cin >> pay;
+		cout << "请输入金额(负为支出，正为收入)：";
+		cin >> sum;
+		cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 	}while(cin.fail());
 
-	do{
-		cout << "请输入收入金额：";
-		cin >> income;
-	}while(cin.fail());
-
-	cout << "请输入备注";
+	if(sum > 0)
+		income = (unsigned long)(sum * 100);
+	else
+		pay = (unsigned long)(sum * -100);
+	cout << "请输入备注:";
 	cin >> remark;
 
 	newRecord.initial(date,pay,type,income,remark);
 	selectAccount->addRecord(newRecord);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
 }
 
 void viewCurrentMonth(CMenu** nowMenu)
@@ -84,14 +87,18 @@ void viewCurrentMonth(CMenu** nowMenu)
 	unsigned long date = getDate(t->tm_year + 1900, t->tm_mon + 1,1); 
 	int bank_start,bank_end,cash_start,cash_end;
 	g_bank.getMonthStartEnd(date,bank_start,bank_end);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
 	for(int i = bank_start; i <= bank_end; i++)
 	{
 		g_bank.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
 	}
 	g_cash.getMonthStartEnd(date,cash_start,cash_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
 	for(int i = cash_start; i <= cash_end; i++)
 	{
 		g_cash.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
 	}
 	getchar();
 }
@@ -113,6 +120,16 @@ CMenu* initialViewRecord()
 
 	return viewRecord;
 }
+
+void save(CMenu** nowMenu)
+{
+	ofstream out;
+	out.open("accountRecord");
+	if(out){
+		g_bank.save(out);
+		g_cash.save(out);
+	}
+}
 CMenu* initialMainMenu()
 {
 	CMenu* mainMenu = new CMenu("mainMenu");
@@ -123,6 +140,9 @@ CMenu* initialMainMenu()
 	mainMenu->addSubMenu(addRecordMenu);
 
 	mainMenu->addSubMenu(initialViewRecord());
+
+	CMenu* saveMenu = new CMenu("保存",save);
+	mainMenu->addSubMenu(saveMenu);
 	return mainMenu;
 }
 

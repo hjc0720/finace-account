@@ -9,13 +9,14 @@ using namespace std;
 string typeString[PayIncomeTypeCount] = 
 {
 	"老婆给的",
-	"从卡里取的",
-	"工资",
+	"卡里取的",
+	"工资奖金",
 	"生活用品",
 	"日常饮食",
 	"餐馆消费",
 	"商场消费",
-	"通讯费",
+	"通讯费用",
+	"取出现金"
 };
 
 record::record()
@@ -27,7 +28,7 @@ record::~record()
 {
 }
 
-void record::initial(unsigned long date, long pay, unsigned char type,long income, const string& remark)
+void record::initial(unsigned long date, unsigned long pay, unsigned char type,unsigned long income, const string& remark)
 {
 	m_date = date;
 	m_pay = pay;
@@ -66,10 +67,10 @@ void record::load(ifstream& inFile)
 void record::print(ostream& out)
 {
 	out << dateToString(m_date)<< '\t';
-	out << typeString[m_type] << '\t';
-	out << m_pay << '\t';
-	out << m_income<< '\t';
-	out << m_remark << endl;
+	out << typeString[m_type] << "\t";
+	out << m_pay / 100.f << '\t';
+	out << m_income / 100.f<< '\t';
+	out << m_remark ;
 }
 
 bool record::operator<(record const & rhs) const

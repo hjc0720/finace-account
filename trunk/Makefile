@@ -2,15 +2,15 @@ CC = gcc
 
 XX = g++
 CFLAGS = -Wall -g
-CFLAGS = -Wall -O2 
+#CFLAGS = -Wall -O2 
 
 TARGET = ./accountbook
 
-%.o: %.c
+%.o: %.c %.h
 
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.o:%.cpp
+%.o:%.cpp %.h
 
 	$(XX) $(CFLAGS) -c $< -o $@
 
