@@ -7,6 +7,7 @@ using namespace std;
 extern account g_bank;
 extern account g_cash;
 extern string typeString[PayIncomeTypeCount];
+unsigned long g_dateShow = 0;
 	
 void mainQuitFun(CMenu** nowMenu)
 {
@@ -102,6 +103,74 @@ void viewCurrentMonth(CMenu** nowMenu)
 	}
 	getchar();
 }
+
+void viewSetMonth(CMenu** nowMenu)
+{
+	if(g_dateShow == 0)
+	{
+		cout << "没有设定时间，请重新设定时间"<< endl;
+		getchar();
+		return;
+	}
+	int bank_start,bank_end,cash_start,cash_end;
+	g_bank.getMonthStartEnd(g_dateShow,bank_start,bank_end);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
+	for(int i = bank_start; i <= bank_end; i++)
+	{
+		g_bank.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
+	}
+	g_cash.getMonthStartEnd(g_dateShow,cash_start,cash_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
+	for(int i = cash_start; i <= cash_end; i++)
+	{
+		g_cash.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
+	}
+	getchar();
+}
+
+void viewSetDay(CMenu** nowMenu)
+{
+	if(g_dateShow == 0)
+	{
+		cout << "没有设定时间，请重新设定时间"<< endl;
+		getchar();
+		return;
+	}
+	int bank_start,bank_end,cash_start,cash_end;
+	g_bank.getDayStartEnd(g_dateShow,bank_start,bank_end);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
+	for(int i = bank_start; i <= bank_end; i++)
+	{
+		g_bank.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
+	}
+	g_cash.getDayStartEnd(g_dateShow,cash_start,cash_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
+	for(int i = cash_start; i <= cash_end; i++)
+	{
+		g_cash.getRecordAt(i).print(cout);
+		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
+	}
+	getchar();
+}
+
+void setDate(CMenu** nowMenu)
+{
+	do{
+		string date_string;
+		cout << "请输入日期(yyyy-month-day):";
+		cin >> date_string;
+		g_dateShow = stringToDate(date_string);
+	}while(g_dateShow == 0);
+}
+
+void viewSetDate(CMenu** nowMenu)
+{
+	cout << dateToString(g_dateShow) << endl;
+	getchar();
+}
 CMenu* initialViewRecord()
 {
 	CMenu* viewRecord = new CMenu("查看记录");
@@ -112,12 +181,17 @@ CMenu* initialViewRecord()
 	CMenu* currentRecord = new CMenu("查看当月全部记录",viewCurrentMonth);
 	viewRecord->addSubMenu(currentRecord);
 
-	CMenu* setRecord = new CMenu("查看指定时间记录");
+	CMenu* setRecord = new CMenu("查看指定时间记录",viewSetMonth);
 	viewRecord->addSubMenu(setRecord);
 
-	CMenu* dayRecord = new CMenu("查看某天的记录");
+	CMenu* dayRecord = new CMenu("查看某天的记录",viewSetDay);
 	viewRecord->addSubMenu(dayRecord);
 
+	CMenu* setDateRecord = new CMenu("设定时间",setDate);
+	viewRecord->addSubMenu(setDateRecord);
+
+	CMenu* viewDateRecord = new CMenu("查看设定时间",viewSetDate);
+	viewRecord->addSubMenu(viewDateRecord);
 	return viewRecord;
 }
 

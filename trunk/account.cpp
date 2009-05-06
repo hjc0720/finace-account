@@ -94,6 +94,22 @@ void account::sortRecord()
 	reCalculate();
 }
 
+void account::getDayStartEnd(unsigned long date, int& start, int& end)
+{
+	int nCount = m_vRecord.size(),i;
+	for( i = 0; i < nCount; i++)
+	{
+		if(m_vRecord[i].GetDate() == date)
+			break;
+	}
+	start = i;
+	for(; i < nCount; i++)
+	{
+		if(m_vRecord[i].GetDate() != date)
+			break;
+	}
+	end = --i;
+}
 void account::getMonthStartEnd(unsigned long date, int& start, int& end)
 {
 	unsigned long year,month;
