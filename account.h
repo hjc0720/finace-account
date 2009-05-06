@@ -28,6 +28,7 @@ class account{
 		record getRecordAt(int i){return m_vRecord[i];};
 		float getLeftAt(int i){ return m_vRecordLeft[i] / 100.f;};
 		void getMonthStartEnd(unsigned long date, int& start, int& end);
+		void getDayStartEnd(unsigned long date, int& start, int& end);
 
 };
 #endif
