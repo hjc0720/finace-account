@@ -16,7 +16,8 @@ string typeString[PayIncomeTypeCount] =
 	"餐馆消费",
 	"商场消费",
 	"通讯费用",
-	"取出现金"
+	"取出现金",
+	"给老婆钱",
 };
 
 record::record()

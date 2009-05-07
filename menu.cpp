@@ -7,7 +7,7 @@ using namespace std;
 extern account g_bank;
 extern account g_cash;
 extern string typeString[PayIncomeTypeCount];
-unsigned long g_dateShow = 0;
+//unsigned long g_dateShow = 0;
 	
 void mainQuitFun(CMenu** nowMenu)
 {
@@ -41,7 +41,7 @@ void addRecord(CMenu** nowMenu)
 	record newRecord;
 	unsigned long date;
 	long pay = 0;
-	unsigned char type;
+	int type;
 	long income = 0;
 	float sum;
 	string remark;
@@ -57,8 +57,8 @@ void addRecord(CMenu** nowMenu)
 			cout<<i + 1 <<"、 "<<typeString[i]<<endl;
 		cout <<"请选择支付类型：";
 		cin >> type;
-		type = type - '1';
-	}while(type == 0 || type > PayIncomeTypeCount); 
+		type--;
+	}while(type < 0 || type >= PayIncomeTypeCount); 
 
 	do{
 		cout << "请输入金额(负为支出，正为收入)：";
@@ -75,8 +75,7 @@ void addRecord(CMenu** nowMenu)
 
 	newRecord.initial(date,pay,type,income,remark);
 	selectAccount->addRecord(newRecord);
-	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
-	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
+	cout << selectAccount->getName() << "\t余额：" <<selectAccount->getTotalLeft() << endl;
 }
 
 void viewCurrentMonth(CMenu** nowMenu)
@@ -88,71 +87,40 @@ void viewCurrentMonth(CMenu** nowMenu)
 	unsigned long date = getDate(t->tm_year + 1900, t->tm_mon + 1,1); 
 	int bank_start,bank_end,cash_start,cash_end;
 	g_bank.getMonthStartEnd(date,bank_start,bank_end);
-	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
-	for(int i = bank_start; i <= bank_end; i++)
-	{
-		g_bank.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
-	}
 	g_cash.getMonthStartEnd(date,cash_start,cash_end);
-	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
-	for(int i = cash_start; i <= cash_end; i++)
-	{
-		g_cash.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
-	}
+	g_bank.print(cout,bank_start,bank_end);
+	g_cash.print(cout,cash_start,cash_end);
 	getchar();
 }
 
 void viewSetMonth(CMenu** nowMenu)
 {
-	if(g_dateShow == 0)
-	{
+	if((*nowMenu)->privateData == NULL){ 
 		cout << "没有设定时间，请重新设定时间"<< endl;
 		getchar();
 		return;
 	}
 	int bank_start,bank_end,cash_start,cash_end;
-	g_bank.getMonthStartEnd(g_dateShow,bank_start,bank_end);
-	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
-	for(int i = bank_start; i <= bank_end; i++)
-	{
-		g_bank.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
-	}
-	g_cash.getMonthStartEnd(g_dateShow,cash_start,cash_end);
-	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
-	for(int i = cash_start; i <= cash_end; i++)
-	{
-		g_cash.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
-	}
+	g_bank.getMonthStartEnd(*(unsigned long*)(*nowMenu)->privateData,bank_start,bank_end);
+	g_cash.getMonthStartEnd(*(unsigned long*)(*nowMenu)->privateData,cash_start,cash_end);
+	g_bank.print(cout,bank_start,bank_end);
+	g_cash.print(cout,cash_start,cash_end);
 	getchar();
 }
 
 void viewSetDay(CMenu** nowMenu)
 {
-	if(g_dateShow == 0)
+	if((*nowMenu)->privateData == NULL)
 	{
 		cout << "没有设定时间，请重新设定时间"<< endl;
 		getchar();
 		return;
 	}
 	int bank_start,bank_end,cash_start,cash_end;
-	g_bank.getDayStartEnd(g_dateShow,bank_start,bank_end);
-	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
-	for(int i = bank_start; i <= bank_end; i++)
-	{
-		g_bank.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_bank.getLeftAt(i)<<endl;
-	}
-	g_cash.getDayStartEnd(g_dateShow,cash_start,cash_end);
-	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
-	for(int i = cash_start; i <= cash_end; i++)
-	{
-		g_cash.getRecordAt(i).print(cout);
-		cout <<'\t'<< g_cash.getLeftAt(i)<<endl;
-	}
+	g_bank.getDayStartEnd(*(unsigned long*)(*nowMenu)->privateData,bank_start,bank_end);
+	g_cash.getDayStartEnd(*(unsigned long*)(*nowMenu)->privateData,cash_start,cash_end);
+	g_bank.print(cout,bank_start,bank_end);
+	g_cash.print(cout,cash_start,cash_end);
 	getchar();
 }
 
@@ -162,13 +130,21 @@ void setDate(CMenu** nowMenu)
 		string date_string;
 		cout << "请输入日期(yyyy-month-day):";
 		cin >> date_string;
-		g_dateShow = stringToDate(date_string);
-	}while(g_dateShow == 0);
+		if((*nowMenu)->privateData == NULL)
+			(*nowMenu)->privateData = new unsigned long;
+		*(unsigned long*)(*nowMenu)->privateData = stringToDate(date_string);
+	}while(*(unsigned long*)(*nowMenu)->privateData == 0);
 }
 
 void viewSetDate(CMenu** nowMenu)
 {
-	cout << dateToString(g_dateShow) << endl;
+	if((*nowMenu)->privateData == NULL)
+	{
+		cout << "没有设定时间，请重新设定时间"<< endl;
+		getchar();
+		return;
+	}
+	cout << dateToString(*(unsigned long*)(*nowMenu)->privateData) << endl;
 	getchar();
 }
 CMenu* initialViewRecord()
@@ -204,6 +180,12 @@ void save(CMenu** nowMenu)
 		g_cash.save(out);
 	}
 }
+
+CMenu* initialModifyMenu()
+{
+	CMenu* modifyMenu = new CMenu("修改记录");
+	return modifyMenu;
+}
 CMenu* initialMainMenu()
 {
 	CMenu* mainMenu = new CMenu("mainMenu");
@@ -214,6 +196,8 @@ CMenu* initialMainMenu()
 	mainMenu->addSubMenu(addRecordMenu);
 
 	mainMenu->addSubMenu(initialViewRecord());
+
+	mainMenu->addSubMenu(initialModifyMenu());
 
 	CMenu* saveMenu = new CMenu("保存",save);
 	mainMenu->addSubMenu(saveMenu);
@@ -242,11 +226,14 @@ CMenu::CMenu(const string& menuName, menuFun pMenuFun /* = NULL*/)
 	m_menuName = menuName;
 	m_fun = pMenuFun ;
 	m_parent = NULL; 
+	privateData = NULL;
 } 
 
 CMenu::~CMenu()
 {
 	int subCount = m_subMenu.size();
+	if(privateData)
+		delete privateData;
 	for(int i = 0; i < subCount; i++)
 		delete m_subMenu[i];
 }

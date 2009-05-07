@@ -132,3 +132,13 @@ void account::getMonthStartEnd(unsigned long date, int& start, int& end)
 	}
 	end = --i;
 }
+
+void account::print(ostream& out,int start, int end)
+{
+	out << getName() << "\t余额：" <<getTotalLeft() << endl;
+	for(int i = start; i <= end; i++)
+	{
+		getRecordAt(i).print(out);
+		out <<'\t'<< getLeftAt(i)<<endl;
+	}
+}
