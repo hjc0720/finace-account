@@ -7,7 +7,7 @@ using namespace std;
 extern account g_bank;
 extern account g_cash;
 extern string typeString[PayIncomeTypeCount];
-//unsigned long g_dateShow = 0;
+unsigned long g_dateShow = 0;
 	
 void mainQuitFun(CMenu** nowMenu)
 {
@@ -95,14 +95,14 @@ void viewCurrentMonth(CMenu** nowMenu)
 
 void viewSetMonth(CMenu** nowMenu)
 {
-	if((*nowMenu)->privateData == NULL){ 
+	if(g_dateShow == 0){ 
 		cout << "没有设定时间，请重新设定时间"<< endl;
 		getchar();
 		return;
 	}
 	int bank_start,bank_end,cash_start,cash_end;
-	g_bank.getMonthStartEnd(*(unsigned long*)(*nowMenu)->privateData,bank_start,bank_end);
-	g_cash.getMonthStartEnd(*(unsigned long*)(*nowMenu)->privateData,cash_start,cash_end);
+	g_bank.getMonthStartEnd(g_dateShow ,bank_start,bank_end);
+	g_cash.getMonthStartEnd(g_dateShow ,cash_start,cash_end);
 	g_bank.print(cout,bank_start,bank_end);
 	g_cash.print(cout,cash_start,cash_end);
 	getchar();
@@ -110,15 +110,15 @@ void viewSetMonth(CMenu** nowMenu)
 
 void viewSetDay(CMenu** nowMenu)
 {
-	if((*nowMenu)->privateData == NULL)
+	if(g_dateShow == 0)
 	{
 		cout << "没有设定时间，请重新设定时间"<< endl;
 		getchar();
 		return;
 	}
 	int bank_start,bank_end,cash_start,cash_end;
-	g_bank.getDayStartEnd(*(unsigned long*)(*nowMenu)->privateData,bank_start,bank_end);
-	g_cash.getDayStartEnd(*(unsigned long*)(*nowMenu)->privateData,cash_start,cash_end);
+	g_bank.getDayStartEnd(g_dateShow ,bank_start,bank_end);
+	g_cash.getDayStartEnd(g_dateShow ,cash_start,cash_end);
 	g_bank.print(cout,bank_start,bank_end);
 	g_cash.print(cout,cash_start,cash_end);
 	getchar();
@@ -130,21 +130,19 @@ void setDate(CMenu** nowMenu)
 		string date_string;
 		cout << "请输入日期(yyyy-month-day):";
 		cin >> date_string;
-		if((*nowMenu)->privateData == NULL)
-			(*nowMenu)->privateData = new unsigned long;
-		*(unsigned long*)(*nowMenu)->privateData = stringToDate(date_string);
-	}while(*(unsigned long*)(*nowMenu)->privateData == 0);
+		g_dateShow = stringToDate(date_string);
+	}while(g_dateShow == 0);
 }
 
 void viewSetDate(CMenu** nowMenu)
 {
-	if((*nowMenu)->privateData == NULL)
+	if(g_dateShow == 0)
 	{
 		cout << "没有设定时间，请重新设定时间"<< endl;
 		getchar();
 		return;
 	}
-	cout << dateToString(*(unsigned long*)(*nowMenu)->privateData) << endl;
+	cout << dateToString(g_dateShow ) << endl;
 	getchar();
 }
 CMenu* initialViewRecord()
@@ -226,14 +224,11 @@ CMenu::CMenu(const string& menuName, menuFun pMenuFun /* = NULL*/)
 	m_menuName = menuName;
 	m_fun = pMenuFun ;
 	m_parent = NULL; 
-	privateData = NULL;
 } 
 
 CMenu::~CMenu()
 {
 	int subCount = m_subMenu.size();
-	if(privateData)
-		delete privateData;
 	for(int i = 0; i < subCount; i++)
 		delete m_subMenu[i];
 }
