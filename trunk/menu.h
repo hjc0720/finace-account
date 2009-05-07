@@ -24,6 +24,7 @@ class CMenu
 		void setParent(CMenu* parent){m_parent = parent;};
 		CMenu* getParent(){return m_parent;};
 		menuFun m_fun;
+		void* privateData;
 	private:
 		string m_menuName;
 		vector<CMenu*> m_subMenu;
