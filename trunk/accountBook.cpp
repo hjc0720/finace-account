@@ -8,21 +8,6 @@ using namespace std;
 account g_bank("银行卡");
 account g_cash("现金");
 
-void selectMainMenu(int select)
-{
-	int subSelect = -1;
-	do{
-		switch(select)
-		{
-			case 1:
-				subSelect = showRecord();
-				break;
-			default:
-				subSelect = 0;
-				break;
-		}
-	}while(subSelect != 0);
-}
 int main()
 {
 	ifstream infile;

@@ -4,10 +4,12 @@
 #include "record.h"
 #include "basefunction.h"
 using namespace std;
+//全局变量
 extern account g_bank;
 extern account g_cash;
 extern string typeString[PayIncomeTypeCount];
 unsigned long g_dateShow = 0;
+string selectRecordIndex;
 	
 void mainQuitFun(CMenu** nowMenu)
 {
@@ -88,9 +90,51 @@ void viewCurrentMonth(CMenu** nowMenu)
 	int bank_start,bank_end,cash_start,cash_end;
 	g_bank.getMonthStartEnd(date,bank_start,bank_end);
 	g_cash.getMonthStartEnd(date,cash_start,cash_end);
+
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
 	g_bank.print(cout,bank_start,bank_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
 	g_cash.print(cout,cash_start,cash_end);
 	getchar();
+}
+
+void modifyRecordCurrentMonth(CMenu** nowMenu)
+{
+	time_t ltime;
+	time(&ltime);
+	tm* t;
+	t = gmtime(&ltime);
+	unsigned long date = getDate(t->tm_year + 1900, t->tm_mon + 1,1); 
+	int bank_start,bank_end,cash_start,cash_end;
+	g_bank.getMonthStartEnd(date,bank_start,bank_end);
+	g_cash.getMonthStartEnd(date,cash_start,cash_end);
+	int nIndex = 1;
+	g_bank.print(cout,bank_start,bank_end,&nIndex);
+	g_cash.print(cout,cash_start,cash_end,&nIndex);
+	cout<<"请选择要修改的记录(输入0为返回):";
+	int sel = 0,realSel,isCon;
+	do{
+		cin >> sel;
+		if(sel <= 0 && (bank_end - bank_start + cash_start - cash_end + 2) < sel) return;
+		sel--;
+		account* selAccount = NULL;
+		if(sel <= bank_end - bank_start)
+		{
+			selAccount = &g_bank;
+			realSel = bank_start + sel;
+		}
+		else 
+		{
+			selAccount = &g_cash;
+			realSel = cash_start + sel - bank_end + bank_start - 1;
+		}
+		cout << "你选中的记录是:" << endl;
+		selAccount->print(cout,realSel,realSel);
+		cout <<"确认请按1,重新输入请按2,取消请按0:";
+		cin >> isCon;
+		if(isCon == 1)
+			selAccount->addDelRecordList(realSel);
+	}while(isCon == 2);
 }
 
 void viewSetMonth(CMenu** nowMenu)
@@ -103,7 +147,9 @@ void viewSetMonth(CMenu** nowMenu)
 	int bank_start,bank_end,cash_start,cash_end;
 	g_bank.getMonthStartEnd(g_dateShow ,bank_start,bank_end);
 	g_cash.getMonthStartEnd(g_dateShow ,cash_start,cash_end);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
 	g_bank.print(cout,bank_start,bank_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
 	g_cash.print(cout,cash_start,cash_end);
 	getchar();
 }
@@ -119,7 +165,9 @@ void viewSetDay(CMenu** nowMenu)
 	int bank_start,bank_end,cash_start,cash_end;
 	g_bank.getDayStartEnd(g_dateShow ,bank_start,bank_end);
 	g_cash.getDayStartEnd(g_dateShow ,cash_start,cash_end);
+	cout << g_bank.getName() << "\t余额：" <<g_bank.getTotalLeft() << endl;
 	g_bank.print(cout,bank_start,bank_end);
+	cout << g_cash.getName() << "\t余额：" <<g_cash.getTotalLeft() << endl;
 	g_cash.print(cout,cash_start,cash_end);
 	getchar();
 }
@@ -179,9 +227,69 @@ void save(CMenu** nowMenu)
 	}
 }
 
+void viewSelRecord(CMenu** nowMenu)
+{
+	for(int i = 0; i < g_bank.getDelRecordListCount();i++)
+		g_bank.print(cout,g_bank.getDelRecordListAt(i),g_bank.getDelRecordListAt(i));
+
+	for(int i = 0; i < g_cash.getDelRecordListCount();i++)
+		g_cash.print(cout,g_cash.getDelRecordListAt(i),g_cash.getDelRecordListAt(i));
+}
+
+void delSelRecord(CMenu** nowMenu)
+{
+	for(int i = 0; i < g_bank.getDelRecordListCount();i++)
+		g_bank.delRecord(g_bank.getDelRecordListAt(i));
+	for(int i = 0; i < g_cash.getDelRecordListCount();i++)
+		g_cash.delRecord(g_cash.getDelRecordListAt(i));
+}
+
+void clearInvalidRecord(CMenu** nowMenu)
+{
+	g_bank.clearInvalidRecord();
+	g_cash.clearInvalidRecord();
+}
+
 CMenu* initialModifyMenu()
 {
 	CMenu* modifyMenu = new CMenu("修改记录");
+
+	CMenu* returnMenu = new CMenu("返回上一级目录",mainQuitFun);
+	modifyMenu->addSubMenu(returnMenu);
+
+	CMenu* findRecordMenu = new CMenu("查找记录");
+	modifyMenu->addSubMenu(findRecordMenu);
+
+	CMenu* clearInvalid = new CMenu("清除无效记录",clearInvalidRecord);
+	modifyMenu->addSubMenu(clearInvalid );
+
+	CMenu* modifyRecordMenu = new CMenu("修改选中的记录");
+	modifyMenu->addSubMenu(modifyRecordMenu);
+
+	CMenu* delRecordMenu = new CMenu("删除选中的记录",delSelRecord);
+	modifyMenu->addSubMenu(delRecordMenu );
+
+	CMenu* viewSelRecMenu = new CMenu("查看选中的记录",viewSelRecord);
+	modifyMenu->addSubMenu(viewSelRecMenu );
+//查找记录菜单
+	returnMenu = new CMenu("返回上一级目录",mainQuitFun);
+	findRecordMenu->addSubMenu(returnMenu);
+
+	CMenu* currentRecord = new CMenu("查看当月全部记录",modifyRecordCurrentMonth);
+	findRecordMenu->addSubMenu(currentRecord);
+
+	CMenu* setRecord = new CMenu("查看指定时间记录");
+	findRecordMenu->addSubMenu(setRecord);
+
+	CMenu* dayRecord = new CMenu("查看某天的记录");
+	findRecordMenu->addSubMenu(dayRecord);
+
+	CMenu* setDateRecord = new CMenu("设定时间");
+	findRecordMenu->addSubMenu(setDateRecord);
+
+	CMenu* viewDateRecord = new CMenu("查看设定时间");
+	findRecordMenu->addSubMenu(viewDateRecord);
+
 	return modifyMenu;
 }
 CMenu* initialMainMenu()
