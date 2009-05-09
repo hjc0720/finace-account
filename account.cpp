@@ -17,6 +17,7 @@ account::account(string name, int initialCash/*= 0*/)
 	m_name = name;
 	m_initialCash = initialCash;
 	m_left = m_initialCash;
+	m_endDate = m_startDate = m_setDate = 0;
 }
 
 void account::save(ofstream& outFile)
@@ -133,12 +134,39 @@ void account::getMonthStartEnd(unsigned long date, int& start, int& end)
 	end = --i;
 }
 
-void account::print(ostream& out,int start, int end)
+void account::print(ostream& out,int start, int end,int* startIndex/* = NULL*/)
 {
-	out << getName() << "\t余额：" <<getTotalLeft() << endl;
+//	out << getName() << "\t余额：" <<getTotalLeft() << endl;
 	for(int i = start; i <= end; i++)
 	{
+		if(startIndex)
+			out << (*startIndex)++<<'\t';
 		getRecordAt(i).print(out);
 		out <<'\t'<< getLeftAt(i)<<endl;
+	}
+}
+
+void account::delDelRecordList(int i)
+{
+	vector<int>::iterator pos = m_vDeleteRecordList.begin() + i;
+	m_vDeleteRecordList.erase(pos);
+}
+
+void account::delRecord(int i)
+{
+	vector<record>::iterator pos = m_vRecord.begin() + i;
+	m_vRecord.erase(pos);
+
+	vector<long>::iterator lpos = m_vRecordLeft.begin() + i;
+	m_vRecordLeft.erase(lpos);
+}
+
+void account::clearInvalidRecord()
+{
+	record temp;
+	for(unsigned int i = 0; i < m_vRecord.size();i++)
+	{
+		if(m_vRecord[i].GetIncome() == 0 && m_vRecord[i].GetPay() == 0)
+			delRecord(i);
 	}
 }
