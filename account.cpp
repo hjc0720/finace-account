@@ -156,9 +156,7 @@ void account::delRecord(int i)
 {
 	vector<record>::iterator pos = m_vRecord.begin() + i;
 	m_vRecord.erase(pos);
-
-	vector<long>::iterator lpos = m_vRecordLeft.begin() + i;
-	m_vRecordLeft.erase(lpos);
+	reCalculate();
 }
 
 void account::clearInvalidRecord()
