@@ -305,6 +305,9 @@ CMenu* initialMainMenu()
 
 	mainMenu->addSubMenu(initialModifyMenu());
 
+        CMenu* analyMenu = new CMenu("收支分析");
+        mainMenu->addSubMenu(analyMenu);
+
 	CMenu* saveMenu = new CMenu("保存",save);
 	mainMenu->addSubMenu(saveMenu);
 	return mainMenu;
