@@ -292,6 +292,54 @@ CMenu* initialModifyMenu()
 
 	return modifyMenu;
 }
+
+void analy(CMenu** nowMenu)
+{
+	float bankIncome[PayIncomeTypeCount] = {0},bankPay[PayIncomeTypeCount] = {0};
+	float cashIncome[PayIncomeTypeCount] = {0},cashPay[PayIncomeTypeCount] = {0};
+	float incomeSum = 0, paySum =0;
+	time_t ltime;
+	time(&ltime);
+	tm* t;
+	t = gmtime(&ltime);
+	unsigned long date = getDate(t->tm_year + 1900, t->tm_mon + 1,1); 
+	int bank_start,bank_end,cash_start,cash_end;
+	g_bank.getMonthStartEnd(date,bank_start,bank_end);
+	g_cash.getMonthStartEnd(date,cash_start,cash_end);
+	for(int i = bank_start; i <= bank_end; i++)
+	{
+		int nType = g_bank.getRecordAt(i).GetType();
+		bankIncome[nType] += g_bank.getRecordAt(i).GetIncome() /100.f;
+		bankPay[nType] += g_bank.getRecordAt(i).GetPay() /100.f;
+	}
+	for(int i = cash_start; i <= cash_end; i++)
+	{
+		int nType = g_cash.getRecordAt(i).GetType();
+		cashIncome[nType] += g_cash.getRecordAt(i).GetIncome() /100.f;
+		cashPay[nType] += g_cash.getRecordAt(i).GetPay()/ 100.f;
+	}
+	cout<<getYear(date)<<"年"<<getMonth(date)<<"月,支出分析:"<<endl;
+	for(int i = 0; i < PayIncomeTypeCount; i++)
+	{
+		if(bankPay[i] + cashPay[i] == 0)
+			continue;
+		cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总支出\t"<<bankPay[i]<<endl;
+		cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总支出\t"<<cashPay[i]<<endl;
+		paySum += bankPay[i] + cashPay[i];
+	}
+	cout<<getYear(date)<<"年"<<getMonth(date)<<"月,收入分析:"<<endl;
+	for(int i = 0; i < PayIncomeTypeCount; i++)
+	{
+		if(bankIncome[i] + cashIncome[i] == 0)
+			continue;
+		cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总收入\t"<<bankIncome[i]<<endl;
+		cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总收入\t"<<cashIncome[i]<<endl;
+		incomeSum += bankIncome[i] + cashIncome[i];
+	}
+	cout<<"本月总支出:"<<paySum;
+	cout<<"本月总收入:"<<incomeSum;
+}
+
 CMenu* initialMainMenu()
 {
 	CMenu* mainMenu = new CMenu("mainMenu");
@@ -305,8 +353,8 @@ CMenu* initialMainMenu()
 
 	mainMenu->addSubMenu(initialModifyMenu());
 
-        CMenu* analyMenu = new CMenu("收支分析");
-        mainMenu->addSubMenu(analyMenu);
+	CMenu* analyMenu = new CMenu("收支分析",analy);
+	mainMenu->addSubMenu(analyMenu);
 
 	CMenu* saveMenu = new CMenu("保存",save);
 	mainMenu->addSubMenu(saveMenu);

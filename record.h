@@ -35,6 +35,7 @@ class record
 		void print(ostream& out);
 		long GetIncome()const{return m_income;};
 		long GetPay() const {return m_pay;};
+		unsigned char GetType() const {return m_type;};
 		unsigned long GetDate(){return m_date;};
 		bool operator<( record const& rhs) const;
 };
