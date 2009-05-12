@@ -2,7 +2,7 @@ CC = gcc
 
 XX = g++
 CFLAGS = -Wall -g
-#CFLAGS = -Wall -O2 
+#CFLAGS = -Wall -O2 -march=pentium4 
 
 TARGET = ./accountbook
 
