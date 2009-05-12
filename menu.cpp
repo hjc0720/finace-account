@@ -323,8 +323,9 @@ void analy(CMenu** nowMenu)
 	{
 		if(bankPay[i] + cashPay[i] == 0)
 			continue;
-		cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总支出\t"<<bankPay[i]<<endl;
-		cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总支出\t"<<cashPay[i]<<endl;
+		//cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总支出\t"<<bankPay[i]<<endl;
+		//cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总支出\t"<<cashPay[i]<<endl;
+		cout<<typeString[i]<<"总支出\t"<<cashPay[i] + bankPay[i]<<endl;
 		paySum += bankPay[i] + cashPay[i];
 	}
 	cout<<getYear(date)<<"年"<<getMonth(date)<<"月,收入分析:"<<endl;
@@ -332,12 +333,13 @@ void analy(CMenu** nowMenu)
 	{
 		if(bankIncome[i] + cashIncome[i] == 0)
 			continue;
-		cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总收入\t"<<bankIncome[i]<<endl;
-		cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总收入\t"<<cashIncome[i]<<endl;
+//		cout<<g_bank.getName()<<"\t"<<typeString[i]<<"总收入\t"<<bankIncome[i]<<endl;
+	//	cout<<g_cash.getName()<<"\t"<<typeString[i]<<"总收入\t"<<cashIncome[i]<<endl;
+		cout<<typeString[i]<<"总收入\t"<<cashIncome[i] + bankIncome[i]<<endl;
 		incomeSum += bankIncome[i] + cashIncome[i];
 	}
-	cout<<"本月总支出:"<<paySum;
-	cout<<"本月总收入:"<<incomeSum;
+	cout<<"本月总支出:"<<paySum<<endl;
+	cout<<"本月总收入:"<<incomeSum<<endl;;
 }
 
 CMenu* initialMainMenu()

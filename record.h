@@ -23,8 +23,8 @@ class record
 		unsigned long m_date;
 		unsigned long m_pay;
 		unsigned long m_income;
-		unsigned char m_type;
 		string m_remark;
+		unsigned char m_type;
 	public:
 		record();
 		~record();
