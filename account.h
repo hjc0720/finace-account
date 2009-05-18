@@ -46,6 +46,6 @@ class account{
 		int getDelRecordListAt(int i){return m_vDeleteRecordList[i];}
 		void delRecord(int i);
 		void clearInvalidRecord();
-
+		void clearRecordList(){m_vDeleteRecordList.clear(); };
 };
 #endif

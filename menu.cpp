@@ -111,9 +111,10 @@ void modifyRecordCurrentMonth(CMenu** nowMenu)
 	int nIndex = 1;
 	g_bank.print(cout,bank_start,bank_end,&nIndex);
 	g_cash.print(cout,cash_start,cash_end,&nIndex);
-	cout<<"请选择要修改的记录(输入0为返回):";
+	cout<<endl;
 	int sel = 0,realSel,isCon;
 	do{
+		cout<<"请选择要修改的记录(输入0为返回):";
 		cin >> sel;
 		if(sel <= 0 && (bank_end - bank_start + cash_start - cash_end + 2) < sel) return;
 		sel--;
@@ -242,6 +243,8 @@ void delSelRecord(CMenu** nowMenu)
 		g_bank.delRecord(g_bank.getDelRecordListAt(i));
 	for(int i = 0; i < g_cash.getDelRecordListCount();i++)
 		g_cash.delRecord(g_cash.getDelRecordListAt(i));
+	g_bank.clearRecordList();
+	g_cash.clearRecordList();
 }
 
 void clearInvalidRecord(CMenu** nowMenu)
