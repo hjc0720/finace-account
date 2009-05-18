@@ -18,6 +18,7 @@ string typeString[PayIncomeTypeCount] =
 	"通讯费用",
 	"取出现金",
 	"给老婆钱",
+	"化妆品"
 };
 
 record::record()
