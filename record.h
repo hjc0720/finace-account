@@ -15,6 +15,7 @@ enum payIncomeType{
 	GetCash,
 	GiveToWife,
 	Cosmetics,
+	Traffic,
 	PayIncomeTypeCount,
 };
 

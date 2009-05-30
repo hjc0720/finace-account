@@ -159,12 +159,16 @@ void account::delRecord(int i)
 	reCalculate();
 }
 
-void account::clearInvalidRecord()
+void account::clearInvalidRecord(ostream& out)
 {
 	record temp;
 	for(unsigned int i = 0; i < m_vRecord.size();i++)
 	{
 		if(m_vRecord[i].GetIncome() == 0 && m_vRecord[i].GetPay() == 0)
+		{
+			m_vRecord[i].print(out);
+			out<<endl;
 			delRecord(i);
+		}
 	}
 }

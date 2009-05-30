@@ -249,8 +249,8 @@ void delSelRecord(CMenu** nowMenu)
 
 void clearInvalidRecord(CMenu** nowMenu)
 {
-	g_bank.clearInvalidRecord();
-	g_cash.clearInvalidRecord();
+	g_bank.clearInvalidRecord(cout);
+	g_cash.clearInvalidRecord(cout);
 }
 
 CMenu* initialModifyMenu()
