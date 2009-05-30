@@ -21,12 +21,15 @@ public:
 
  private slots:
     void save();
+    void addRecord();
 
 private:
     QTableWidget* table;
     QAction* action_save;
+    QAction* action_addRecord;
     QAction* action_exit;
     QMenu* fileMenu;
+    QMenu* editMenu;
     account m_bank;
     account m_cash;
     const string fileName;

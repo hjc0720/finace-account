@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), fileName("accountRecord")
 {
     table = new QTableWidget(20,6,this);
+    table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     setCentralWidget(table);
     createActions();
     createMenu();
@@ -23,6 +24,10 @@ void MainWindow::createActions()
     action_exit = new QAction(tr("&Quit"),this);
     action_exit->setShortcut(tr("Ctrl+Q"));
     connect(action_exit,SIGNAL(triggered()),this,SLOT(close()));
+
+    action_addRecord = new QAction(tr("&Add Record"),this);
+    action_addRecord->setShortcut(tr("Ctrl++"));
+    connect(action_addRecord,SIGNAL(triggered()),this,SLOT(addRecord()));
 }
 
 void MainWindow::createMenu()
@@ -30,6 +35,13 @@ void MainWindow::createMenu()
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(action_save);
     fileMenu->addAction(action_exit);
+
+    editMenu = menuBar()->addMenu("&Edit");
+    editMenu->addAction(action_addRecord);
+}
+
+void MainWindow::addRecord()
+{
 }
 
 MainWindow::~MainWindow()
