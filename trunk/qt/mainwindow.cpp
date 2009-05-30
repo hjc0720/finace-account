@@ -8,7 +8,7 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), fileName("accountRecord")
 {
-    table = new QTableWidget(10,6,this);
+    table = new QTableWidget(20,6,this);
     setCentralWidget(table);
     createActions();
     createMenu();
