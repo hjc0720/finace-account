@@ -39,6 +39,7 @@ class record
 		long GetPay() const {return m_pay;};
 		unsigned char GetType() const {return m_type;};
 		unsigned long GetDate(){return m_date;};
+                string GetRemark(){return m_remark;};
 		bool operator<( record const& rhs) const;
 };
 #endif

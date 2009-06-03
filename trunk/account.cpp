@@ -97,19 +97,7 @@ void account::sortRecord()
 
 void account::getDayStartEnd(unsigned long date, int& start, int& end)
 {
-	int nCount = m_vRecord.size(),i;
-	for( i = 0; i < nCount; i++)
-	{
-		if(m_vRecord[i].GetDate() == date)
-			break;
-	}
-	start = i;
-	for(; i < nCount; i++)
-	{
-		if(m_vRecord[i].GetDate() != date)
-			break;
-	}
-	end = --i;
+        getStartEnd(date,date,start,end);
 }
 void account::getMonthStartEnd(unsigned long date, int& start, int& end)
 {
@@ -119,19 +107,7 @@ void account::getMonthStartEnd(unsigned long date, int& start, int& end)
 	unsigned long startDate = getDate(year,month,1);
 	unsigned long endDate = getDate(year,month+1,1);
 //	reCalculate();
-	int nCount = m_vRecord.size(),i;
-	for(i = 0; i < nCount; i++)
-	{
-		if(m_vRecord[i].GetDate() >= startDate)
-			break;
-	}
-	start = i;
-	for(;i < nCount; i++)
-	{
-		if(m_vRecord[i].GetDate() >= endDate)
-			break;
-	}
-	end = --i;
+        getStartEnd(startDate,endDate-1,start,end);
 }
 
 void account::print(ostream& out,int start, int end,int* startIndex/* = NULL*/)
@@ -171,4 +147,21 @@ void account::clearInvalidRecord(ostream& out)
 			delRecord(i);
 		}
 	}
+}
+
+void account::getStartEnd(unsigned long startDate,unsigned long endDate,int &start, int& end)
+{
+        int nCount = m_vRecord.size(),i;
+        for(i = 0; i < nCount; i++)
+        {
+                if(m_vRecord[i].GetDate() >= startDate)
+                        break;
+        }
+        start = i;
+        for(;i < nCount; i++)
+        {
+                if(m_vRecord[i].GetDate() > endDate)
+                        break;
+        }
+        end = --i;
 }
