@@ -33,6 +33,7 @@ class account{
 		float getLeftAt(int i){ return m_vRecordLeft[i] / 100.f;};
 		void getMonthStartEnd(unsigned long date, int& start, int& end);
 		void getDayStartEnd(unsigned long date, int& start, int& end);
+                void getStartEnd(unsigned long startDate,unsigned long endDate,int &start, int& end);
 		void print(ostream& out,int start, int end, int* startIndex = NULL);
 		void setDate(unsigned long date){m_setDate = date;};
 		unsigned long getSetDate(){return m_setDate;};
