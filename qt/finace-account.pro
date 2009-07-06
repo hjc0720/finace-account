@@ -7,10 +7,12 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     ../account.cpp \
     ../record.cpp \
-    ../basefunction.cpp
+    ../basefunction.cpp \
+    addrecorddlg.cpp
 HEADERS += mainwindow.h \
     ../record.h \
     ../basefunction.h \
-    ../account.h
-FORMS += 
+    ../account.h \
+    addrecorddlg.h
+FORMS += addrecorddlg.ui
 OTHER_FILES += 

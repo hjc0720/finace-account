@@ -4,11 +4,20 @@
 #include <QtGui/QMainWindow>
 #include <string>
 #include "../account.h"
+
+
 using namespace std;
 
 class QTableWidget;
 class QDateEdit;
 class QLabel;
+class addRecordDlg;
+
+typedef struct _realRecord
+{
+    account* realAccount;
+    int recordIndex;
+}realRecord;
 
 class MainWindow : public QMainWindow
 {
@@ -23,12 +32,14 @@ public:
 private:
     void initialTable();
     void setTableRow(account& nowAccount,record& nowRecord,float left,int row);
+    void createContextMenu();
 
 
  private slots:
     void save();
     void addRecord();
     void dateChange();
+    void modifyRecord();
 
 private:
     QLabel* bankName;
@@ -39,6 +50,7 @@ private:
     QTableWidget* table;
     QAction* action_save;
     QAction* action_addRecord;
+    QAction* action_modifyRecord;
     QAction* action_exit;
     QMenu* fileMenu;
     QMenu* editMenu;
@@ -53,6 +65,8 @@ private:
     unsigned long m_nEndDate;
     const string fileName;
     const int tableColumnCount;
+    //addRecordDlg* recordDlg;
+    vector<realRecord> m_vRealRecord;
 };
 
 #endif // MAINWINDOW_H
