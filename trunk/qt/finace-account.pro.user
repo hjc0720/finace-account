@@ -59,7 +59,7 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-1hXrHEBI2N,guid=6371ca5638574c408cd664724a27008f</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-U3K2w83n9s,guid=ab7b0e461b656e7a822dd1094a4e093c</value>
     <value type="QString" >DESKTOP_SESSION=gnome</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -67,8 +67,8 @@
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
     <value type="QString" >GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-2ZjUe4/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-a09MtZ/S.gpg-agent:5384:1</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-pvNQsv/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-CgsE6K/S.gpg-agent:5323:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
     <value type="QString" >HOME=/home/hjc</value>
@@ -79,16 +79,16 @@
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5323</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5262</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=5374</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-2ZjUe4/ssh</value>
+    <value type="QString" >SSH_AGENT_PID=5314</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-pvNQsv/ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/tmp/.gdmQG3PUU</value>
+    <value type="QString" >XAUTHORITY=/tmp/.gdm3W07VU</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1244070021.555096-1894563097</value>
+    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1246628146.644737-1454346276</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -109,7 +109,7 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-1hXrHEBI2N,guid=6371ca5638574c408cd664724a27008f</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-U3K2w83n9s,guid=ab7b0e461b656e7a822dd1094a4e093c</value>
     <value type="QString" >DESKTOP_SESSION=gnome</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -117,8 +117,8 @@
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
     <value type="QString" >GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-2ZjUe4/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-a09MtZ/S.gpg-agent:5384:1</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-pvNQsv/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-CgsE6K/S.gpg-agent:5323:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
     <value type="QString" >HOME=/home/hjc</value>
@@ -129,16 +129,16 @@
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5323</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5262</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=5374</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-2ZjUe4/ssh</value>
+    <value type="QString" >SSH_AGENT_PID=5314</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-pvNQsv/ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/tmp/.gdmQG3PUU</value>
+    <value type="QString" >XAUTHORITY=/tmp/.gdm3W07VU</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1244070021.555096-1894563097</value>
+    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1246628146.644737-1454346276</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -154,7 +154,7 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-kf6iSoThvC,guid=643cd72dc9e74645968ed1ea4a1a8ef8</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-qdbZCByH0s,guid=a9f0583835504b950e79c29f4a4cb000</value>
     <value type="QString" >DESKTOP_SESSION=gnome</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -162,8 +162,8 @@
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
     <value type="QString" >GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-xUNohb/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-S6QxWu/S.gpg-agent:5197:1</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-KcM6jh/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-sucHEZ/S.gpg-agent:5285:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
     <value type="QString" >HOME=/home/hjc</value>
@@ -174,16 +174,16 @@
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5136</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5224</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=5187</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-xUNohb/ssh</value>
+    <value type="QString" >SSH_AGENT_PID=5275</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-KcM6jh/ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/tmp/.gdm1W07TU</value>
+    <value type="QString" >XAUTHORITY=/tmp/.gdm0COEWU</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1243254510.651073-478527227</value>
+    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1246539766.528832-2141875636</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >

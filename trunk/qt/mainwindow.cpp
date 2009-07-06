@@ -10,6 +10,8 @@
 #include <QString>
 #include <string>
 #include <QStatusBar>
+#include "addrecorddlg.h"
+
 using namespace std;
 
 extern string typeString[PayIncomeTypeCount];
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(table);
     createActions();
     createMenu();
+    createContextMenu();
 
     QDate firstDay = QDate::currentDate();
     endDate = new QDateEdit(firstDay,this);
@@ -54,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent)
     statusBar->addWidget(cashLeft);
     setStatusBar(statusBar);
 
+    //recordDlg = new addRecordDlg(this);
+
 }
 
 void MainWindow::createActions()
@@ -69,6 +74,11 @@ void MainWindow::createActions()
     action_addRecord = new QAction(tr("&Add Record"),this);
     action_addRecord->setShortcut(tr("Ctrl++"));
     connect(action_addRecord,SIGNAL(triggered()),this,SLOT(addRecord()));
+
+    action_modifyRecord = new QAction(tr("&M修改记录"),this);
+    action_modifyRecord ->setShortcut(tr("Ctrl+M"));
+    connect(action_modifyRecord ,SIGNAL(triggered()),this,SLOT(modifyRecord()));
+
 }
 
 void MainWindow::createMenu()
@@ -79,10 +89,90 @@ void MainWindow::createMenu()
 
     editMenu = menuBar()->addMenu("&Edit");
     editMenu->addAction(action_addRecord);
+    editMenu->addAction(action_modifyRecord);
+}
+
+void MainWindow::createContextMenu()
+{
+    table->addAction(action_modifyRecord);
+    table->addAction(action_addRecord);
+    //table->addAction(pasteAction);
+    table->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
+
+
+void MainWindow::modifyRecord()
+{
+    int row = table->currentRow();
+    if(row < 0)
+        return;
+    realRecord selRecord = m_vRealRecord[row];
+
+    record select = selRecord.realAccount->getRecordAt(selRecord.recordIndex);
+
+    addRecordDlg* recordDlg = new addRecordDlg(this);
+    recordDlg->addAccountName(QString::fromStdString(m_bank.getName()));
+    recordDlg->addAccountName(QString::fromStdString(m_cash.getName()));
+    int nAccount = 0;
+    if(selRecord.realAccount->getName() != m_bank.getName())
+        nAccount = 1;
+    recordDlg->updateDlg(nAccount,select.GetDate(),select.GetIncome() - select.GetPay(),select.GetType(),select.GetRemark());
+
+    if(recordDlg->exec() == QDialog::Accepted)
+    {
+        selRecord.realAccount->delRecord(selRecord.recordIndex);
+        record newRecord;
+        unsigned long date;
+        unsigned long pay,income;
+        unsigned char type;
+        string remark;
+        date = recordDlg->getSetDate();
+        pay = recordDlg->getPay();
+        income = recordDlg->getIncome();
+        type = recordDlg->getType();
+        remark = recordDlg->getRemark();
+        newRecord.initial(date,pay,type,income,remark);
+        account* selectAccount = NULL;
+        if(recordDlg->getAccount() == 0)
+            selectAccount = &m_bank;
+        else if(recordDlg->getAccount() == 1)
+            selectAccount = &m_cash;
+        selectAccount->addRecord(newRecord);
+        dateChange();
+
+    }
+    delete recordDlg;
 }
 
 void MainWindow::addRecord()
 {
+    //recordDlg->show();
+    addRecordDlg* recordDlg = new addRecordDlg(this);
+    recordDlg->addAccountName(QString::fromStdString(m_bank.getName()));
+    recordDlg->addAccountName(QString::fromStdString(m_cash.getName()));
+
+    if(recordDlg->exec() == QDialog::Accepted)
+    {
+        record newRecord;
+        unsigned long date;
+        unsigned long pay,income;
+        unsigned char type;
+        string remark;
+        date = recordDlg->getSetDate();
+        pay = recordDlg->getPay();
+        income = recordDlg->getIncome();
+        type = recordDlg->getType();
+        remark = recordDlg->getRemark();
+        newRecord.initial(date,pay,type,income,remark);
+        account* selectAccount = NULL;
+        if(recordDlg->getAccount() == 0)
+            selectAccount = &m_bank;
+        else if(recordDlg->getAccount() == 1)
+            selectAccount = &m_cash;
+        selectAccount->addRecord(newRecord);
+        dateChange();
+    }
+    delete recordDlg;
 }
 
 MainWindow::~MainWindow()
@@ -102,9 +192,10 @@ void MainWindow::initial()
         m_cash.load(ifile);
     }
     ifile.close();
+
+
     initialTable();
     bankLeft->setText(QString::number(m_bank.getTotalLeft()));
-    cashLeft->setText(QString::number(m_cash.getTotalLeft()));
     bankName->setText(QString::fromStdString(m_bank.getName()));
     cashName->setText(QString::fromStdString(m_cash.getName()));
 }
@@ -117,6 +208,7 @@ void MainWindow::save()
     {
         m_bank.save(ofile);
         m_cash.save(ofile);
+
     }
     ofile.close();
 }
@@ -129,6 +221,8 @@ void MainWindow::dateChange()
 
 void MainWindow::initialTable()
 {
+    m_vRealRecord.clear();
+
     table->setColumnCount(tableColumnCount);
     table->setHorizontalHeaderLabels(QStringList()<<tr("date")<<tr("accountName")<<tr("type")<<tr("pay")<<tr("income")<<tr("left")<<tr("other"));
     QDate start,end;
@@ -163,20 +257,44 @@ void MainWindow::initialTable()
         record bankRecord = m_bank.getRecordAt(bankStart);
         record cashRecord = m_cash.getRecordAt(cashStart);
         if(cashRecord < bankRecord)
+        {
+            realRecord newReal;
+            newReal.realAccount = & m_cash;
+            newReal.recordIndex = cashStart;
+            m_vRealRecord.push_back(newReal);
             setTableRow(m_cash,cashRecord,m_cash.getLeftAt(cashStart++),nowRow++);
+        }
         else
+        {
+            realRecord newReal;
+            newReal.realAccount = & m_bank;
+            newReal.recordIndex = bankStart;
+            m_vRealRecord.push_back(newReal);
+
             setTableRow(m_bank,bankRecord,m_bank.getLeftAt(bankStart++),nowRow++);
+        }
     }
     while(bankStart <= bankEnd)
     {
+        realRecord newReal;
+        newReal.realAccount = & m_bank ;
+        newReal.recordIndex = bankStart;
+        m_vRealRecord.push_back(newReal);
+
         record bankRecord = m_bank.getRecordAt(bankStart);
         setTableRow(m_bank,bankRecord,m_bank.getLeftAt(bankStart++),nowRow++);
     }
     while(cashStart <= cashEnd)
     {
+        realRecord newReal;
+        newReal.realAccount = &m_cash;
+        newReal.recordIndex = cashStart ;
+        m_vRealRecord.push_back(newReal);
+
         record cashRecord = m_cash.getRecordAt(cashStart);
         setTableRow(m_cash,cashRecord,m_cash.getLeftAt(cashStart++),nowRow++);
     }
+
 }
 
 void MainWindow::setTableRow(account& nowAccount,record& nowRecord,float left,int row)
