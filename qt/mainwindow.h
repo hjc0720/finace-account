@@ -46,6 +46,8 @@ private:
     QLabel* cashName;
     QLabel* bankLeft;
     QLabel* cashLeft;
+    QLabel* totalPayName;
+    QLabel* totalPay;
     QStatusBar* statusBar;
     QTableWidget* table;
     QAction* action_save;
