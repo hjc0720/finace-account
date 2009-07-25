@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-
 #include "../basefunction.h"
 #include <iostream>
 #include <QAction>
@@ -51,19 +50,34 @@ MainWindow::MainWindow(QWidget *parent)
     bankLeft = new QLabel(this);
     cashLeft = new QLabel(this);
 
+
+    totalPayName = new QLabel(tr("总消费:"),this);
+    totalPay     = new QLabel(this);
+
     statusBar = new QStatusBar(this);
     statusBar->addWidget(bankName);
     statusBar->addWidget(bankLeft);
     statusBar->addWidget(cashName);
     statusBar->addWidget(cashLeft);
-//    statusBar->addWidget();
- //   statusBar->addWidget(totalPay);
+    statusBar->addWidget(totalPay);
     statusBar->addWidget(totalPayName);
     statusBar->addWidget(totalPay);
     setStatusBar(statusBar);
 
     //recordDlg = new addRecordDlg(this);
 
+}
+
+float MainWindow::getTotalPay()
+{
+    int nCount = m_vRealRecord.size();
+    float sum = 0;
+    for(int i = 0; i < nCount; i++)
+    {
+        record tmpRecord = m_vRealRecord[i].realAccount->getRecordAt(i);
+        sum += tmpRecord.GetPay() / 100.f ;
+    }
+    return sum;
 }
 
 void MainWindow::createActions()
@@ -204,6 +218,8 @@ void MainWindow::initial()
     bankName->setText(QString::fromStdString(m_bank.getName()));
     cashLeft->setText(QString::number(m_cash.getTotalLeft()));
     cashName->setText(QString::fromStdString(m_cash.getName()));
+
+    totalPay->setText(QString::number(getTotalPay()));
 }
 
 void MainWindow::save()
@@ -227,6 +243,7 @@ void MainWindow::dateChange()
         bankName->setText(QString::fromStdString(m_bank.getName()));
         cashLeft->setText(QString::number(m_cash.getTotalLeft()));
         cashName->setText(QString::fromStdString(m_cash.getName()));
+        totalPay->setText(QString::number(getTotalPay()));
 }
 
 void MainWindow::initialTable()
