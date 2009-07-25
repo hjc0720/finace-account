@@ -16,3 +16,4 @@ HEADERS += mainwindow.h \
     addrecorddlg.h
 FORMS += addrecorddlg.ui
 OTHER_FILES += 
+CONFIG += debug warn_on

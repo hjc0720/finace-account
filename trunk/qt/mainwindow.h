@@ -33,6 +33,7 @@ private:
     void initialTable();
     void setTableRow(account& nowAccount,record& nowRecord,float left,int row);
     void createContextMenu();
+    float getTotalPay();
 
 
  private slots:
