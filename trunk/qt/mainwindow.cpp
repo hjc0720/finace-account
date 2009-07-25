@@ -55,6 +55,10 @@ MainWindow::MainWindow(QWidget *parent)
     statusBar->addWidget(bankLeft);
     statusBar->addWidget(cashName);
     statusBar->addWidget(cashLeft);
+//    statusBar->addWidget();
+ //   statusBar->addWidget(totalPay);
+    statusBar->addWidget(totalPayName);
+    statusBar->addWidget(totalPay);
     setStatusBar(statusBar);
 
     //recordDlg = new addRecordDlg(this);
@@ -197,6 +201,7 @@ void MainWindow::initial()
     initialTable();
     bankLeft->setText(QString::number(m_bank.getTotalLeft()));
     bankName->setText(QString::fromStdString(m_bank.getName()));
+    cashLeft->setText(QString::number(m_cash.getTotalLeft()));
     cashName->setText(QString::fromStdString(m_cash.getName()));
 }
 
@@ -217,6 +222,10 @@ void MainWindow::dateChange()
 {
         table->clear();
         initialTable();
+        bankLeft->setText(QString::number(m_bank.getTotalLeft()));
+        bankName->setText(QString::fromStdString(m_bank.getName()));
+        cashLeft->setText(QString::number(m_cash.getTotalLeft()));
+        cashName->setText(QString::fromStdString(m_cash.getName()));
 }
 
 void MainWindow::initialTable()
