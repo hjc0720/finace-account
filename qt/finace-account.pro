@@ -8,12 +8,15 @@ SOURCES += main.cpp \
     ../account.cpp \
     ../record.cpp \
     ../basefunction.cpp \
-    addrecorddlg.cpp
+    addrecorddlg.cpp \
+    analysisDlg.cpp \
+
 HEADERS += mainwindow.h \
     ../record.h \
     ../basefunction.h \
     ../account.h \
-    addrecorddlg.h
+    addrecorddlg.h\
+    analysisDlg.h 
 FORMS += addrecorddlg.ui
 OTHER_FILES += 
-CONFIG += debug warn_on
+CONFIG += debug warn_on qt
