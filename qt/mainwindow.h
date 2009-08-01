@@ -4,6 +4,7 @@
 #include <QtGui/QMainWindow>
 #include <string>
 #include "../account.h"
+#include	"analysisDlg.h"
 
 
 using namespace std;
@@ -29,6 +30,8 @@ public:
     void createActions();
     void createMenu();
     void initial();
+signals:
+    void dataRefresh(vector<realRecord>&);
 private:
     void initialTable();
     void setTableRow(account& nowAccount,record& nowRecord,float left,int row);
@@ -39,6 +42,7 @@ private:
  private slots:
     void save();
     void addRecord();
+    void showAnalys();
     void dateChange();
     void modifyRecord();
 
@@ -55,6 +59,7 @@ private:
     QAction* action_addRecord;
     QAction* action_modifyRecord;
     QAction* action_exit;
+    QAction* action_analys;
     QMenu* fileMenu;
     QMenu* editMenu;
     QToolBar* dateToolBar;
@@ -70,6 +75,9 @@ private:
     const int tableColumnCount;
     //addRecordDlg* recordDlg;
     vector<realRecord> m_vRealRecord;
+
+    analysisDlg* analy;
+
 };
 
 #endif // MAINWINDOW_H

@@ -28,7 +28,7 @@ class analysisDlg : public QDialog {
     Q_DISABLE_COPY(analysisDlg)
 public:
     explicit analysisDlg(QWidget *parent = 0);
-    virtual ~analysisDlg(){};
+    virtual ~analysisDlg();
 private:
     QTableWidget* pResult;
     QPushButton* pOk;
