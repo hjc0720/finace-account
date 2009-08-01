@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //recordDlg = new addRecordDlg(this);
 
+    analy = new analysisDlg(this);
 }
 
 float MainWindow::getTotalPay()
@@ -84,11 +85,16 @@ void MainWindow::createActions()
 {
     action_save = new QAction(tr("&Save"),this);
     action_save->setShortcut(tr("Ctrl+S"));
-   connect(action_save,SIGNAL(triggered()),this,SLOT(save()));
+    connect(action_save,SIGNAL(triggered()),this,SLOT(save()));
 
     action_exit = new QAction(tr("&Quit"),this);
     action_exit->setShortcut(tr("Ctrl+Q"));
     connect(action_exit,SIGNAL(triggered()),this,SLOT(close()));
+
+
+    action_analys = new QAction(tr("&Analysis"),this);
+    action_analys->setShortcut(tr("Ctrl+A"));
+    connect(action_analys,SIGNAL(triggered()),this,SLOT(showAnalys()));
 
     action_addRecord = new QAction(tr("&Add Record"),this);
     action_addRecord->setShortcut(tr("Ctrl++"));
@@ -105,6 +111,7 @@ void MainWindow::createMenu()
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(action_save);
     fileMenu->addAction(action_exit);
+    fileMenu->addAction(action_analys);
 
     editMenu = menuBar()->addMenu("&Edit");
     editMenu->addAction(action_addRecord);
@@ -119,6 +126,10 @@ void MainWindow::createContextMenu()
     table->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
+void MainWindow::showAnalys()
+{
+    analy->show();
+}
 
 void MainWindow::modifyRecord()
 {
@@ -239,6 +250,7 @@ void MainWindow::dateChange()
 {
         table->clear();
         initialTable();
+        emit dataRefresh(m_vRealRecord);
         bankLeft->setText(QString::number(m_bank.getTotalLeft()));
         bankName->setText(QString::fromStdString(m_bank.getName()));
         cashLeft->setText(QString::number(m_cash.getTotalLeft()));
