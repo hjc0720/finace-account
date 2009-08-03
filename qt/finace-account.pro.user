@@ -6,7 +6,7 @@
  </data>
  <data>
   <variable>RunConfiguration0-ProFile</variable>
-  <value type="QString" >finace-account.pro</value>
+  <value type="QString" >/home/hjc/myhome/code/finace-account/qt/finace-account.pro</value>
  </data>
  <data>
   <variable>RunConfiguration0-RunConfiguration.name</variable>
@@ -21,26 +21,6 @@
   <value type="QString" >Qt4ProjectManager.Qt4RunConfiguration</value>
  </data>
  <data>
-  <variable>RunConfiguration1-Arguments</variable>
-  <valuelist type="QVariantList" />
- </data>
- <data>
-  <variable>RunConfiguration1-Executable</variable>
-  <value type="QString" ></value>
- </data>
- <data>
-  <variable>RunConfiguration1-RunConfiguration.name</variable>
-  <value type="QString" >Custom Executable</value>
- </data>
- <data>
-  <variable>RunConfiguration1-WorkingDirectory</variable>
-  <value type="QString" >$BUILDDIR</value>
- </data>
- <data>
-  <variable>RunConfiguration1-type</variable>
-  <value type="QString" >ProjectExplorer.CustomExecutableRunConfiguration</value>
- </data>
- <data>
   <variable>activeRunConfiguration</variable>
   <value type="int" >0</value>
  </data>
@@ -52,10 +32,8 @@
   <variable>buildConfiguration-Debug</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
-   <value key="QtVersionId" type="int" >2</value>
-   <value key="addQDumper" type="" ></value>
+   <value key="QtVersionId" type="int" >0</value>
    <value key="buildDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
-   <value key="useShadowBuild" type="bool" >false</value>
   </valuemap>
  </data>
  <data>
@@ -64,14 +42,21 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
    <value key="QtVersionId" type="int" >0</value>
    <value key="addQDumper" type="" ></value>
+   <value key="buildDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
   </valuemap>
  </data>
  <data>
   <variable>buildconfiguration-Debug-buildstep0</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3Cc3bDEmp7,guid=66b4d0b5dcf647d6373d493c4a6852cc</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-vVBxrcSAJy,guid=0080ac8ed479645b020e61694a74e7d6</value>
     <value type="QString" >DESKTOP_SESSION=default.desktop</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -79,8 +64,8 @@
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
     <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-aVUyKg/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-THMD68/S.gpg-agent:3061:1</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-zs3tHO/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-C7AuaH/S.gpg-agent:3083:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
     <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
@@ -92,16 +77,16 @@
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2947</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2937</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=3035</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-aVUyKg/socket.ssh</value>
+    <value type="QString" >SSH_AGENT_PID=3041</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-zs3tHO/socket.ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
     <value type="QString" >XAUTHORITY=/home/hjc/.Xauthority</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1248350922.894785-118531708</value>
+    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1249175508.767688-1854872605</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -110,19 +95,23 @@
     <value type="QString" >/usr/share/qt4/mkspecs/linux-g++</value>
     <value type="QString" >-r</value>
     <value type="QString" >CONFIG+=debug</value>
+    <value type="QString" >CONFIG+=debug_and_release</value>
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/qmake-qt4</value>
    <value key="abstractProcess.enabled" type="bool" >false</value>
    <value key="abstractProcess.workingDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
    <value key="buildConfiguration" type="int" >2</value>
+   <valuelist key="qmakeArgs" type="QVariantList" >
+    <value type="QString" >CONFIG+=debug_and_release</value>
+   </valuelist>
   </valuemap>
  </data>
  <data>
-  <variable>buildconfiguration-Debug-buildstep1</variable>
+  <variable>buildconfiguration-Debug-buildstep2</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3Cc3bDEmp7,guid=66b4d0b5dcf647d6373d493c4a6852cc</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-vVBxrcSAJy,guid=0080ac8ed479645b020e61694a74e7d6</value>
     <value type="QString" >DESKTOP_SESSION=default.desktop</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
@@ -130,8 +119,8 @@
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
     <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-aVUyKg/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-THMD68/S.gpg-agent:3061:1</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-zs3tHO/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-C7AuaH/S.gpg-agent:3083:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
     <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
@@ -143,16 +132,16 @@
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2947</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2937</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=3035</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-aVUyKg/socket.ssh</value>
+    <value type="QString" >SSH_AGENT_PID=3041</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-zs3tHO/socket.ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
     <value type="QString" >XAUTHORITY=/home/hjc/.Xauthority</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1248350922.894785-118531708</value>
+    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1249175508.767688-1854872605</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -168,36 +157,37 @@
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList" >
-    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-qdbZCByH0s,guid=a9f0583835504b950e79c29f4a4cb000</value>
-    <value type="QString" >DESKTOP_SESSION=gnome</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-vVBxrcSAJy,guid=0080ac8ed479645b020e61694a74e7d6</value>
+    <value type="QString" >DESKTOP_SESSION=default.desktop</value>
     <value type="QString" >DESKTOP_STARTUP_ID=</value>
     <value type="QString" >DISPLAY=:0.0</value>
-    <value type="QString" >GDMSESSION=gnome</value>
+    <value type="QString" >GDMSESSION=default.desktop</value>
     <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
     <value type="QString" >GDM_XSERVER_LOCATION=local</value>
-    <value type="QString" >GNOME_DESKTOP_SESSION_ID=Default</value>
-    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-KcM6jh/socket</value>
-    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-sucHEZ/S.gpg-agent:5285:1</value>
+    <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-zs3tHO/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-C7AuaH/S.gpg-agent:3083:1</value>
     <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
+    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
     <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
     <value type="QString" >HOME=/home/hjc</value>
     <value type="QString" >LANG=zh_CN.UTF-8</value>
-    <value type="QString" >LD_LIBRARY_PATH=/home/hjc/qtcreator-1.1.0/lib/qtcreator:</value>
     <value type="QString" >LOGNAME=hjc</value>
-    <value type="QString" >PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games</value>
+    <value type="QString" >ORBIT_SOCKETDIR=/tmp/orbit-hjc</value>
+    <value type="QString" >PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
     <value type="QString" >PWD=/home/hjc</value>
     <value type="QString" >QTDIR=/usr</value>
     <value type="QString" >QT_IM_MODULE=xim</value>
-    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/5224</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2937</value>
     <value type="QString" >SHELL=/bin/bash</value>
-    <value type="QString" >SSH_AGENT_PID=5275</value>
-    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-KcM6jh/ssh</value>
+    <value type="QString" >SSH_AGENT_PID=3041</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-zs3tHO/socket.ssh</value>
     <value type="QString" >USER=hjc</value>
     <value type="QString" >USERNAME=hjc</value>
     <value type="QString" >WINDOWPATH=7</value>
-    <value type="QString" >XAUTHORITY=/tmp/.gdm0COEWU</value>
+    <value type="QString" >XAUTHORITY=/home/hjc/.Xauthority</value>
     <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
-    <value type="QString" >XDG_SESSION_COOKIE=e64ddb1f3e92a6f1e9a5090045b46a96-1246539766.528832-2141875636</value>
+    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1249175508.767688-1854872605</value>
     <value type="QString" >XMODIFIERS=@im=SCIM</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList" >
@@ -206,20 +196,109 @@
    </valuelist>
    <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool" >true</value>
-   <value key="abstractProcess.workingDirectory" type="QString" >/home/hjc/code/finace-account/qt</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
   </valuemap>
  </data>
  <data>
   <variable>buildconfiguration-Release-buildstep0</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
-   <value key="buildConfiguration" type="int" >0</value>
   </valuemap>
  </data>
  <data>
   <variable>buildconfiguration-Release-buildstep1</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-vVBxrcSAJy,guid=0080ac8ed479645b020e61694a74e7d6</value>
+    <value type="QString" >DESKTOP_SESSION=default.desktop</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >GDMSESSION=default.desktop</value>
+    <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
+    <value type="QString" >GDM_XSERVER_LOCATION=local</value>
+    <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-zs3tHO/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-C7AuaH/S.gpg-agent:3083:1</value>
+    <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
+    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
+    <value type="QString" >HOME=/home/hjc</value>
+    <value type="QString" >LANG=zh_CN.UTF-8</value>
+    <value type="QString" >LOGNAME=hjc</value>
+    <value type="QString" >ORBIT_SOCKETDIR=/tmp/orbit-hjc</value>
+    <value type="QString" >PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
+    <value type="QString" >PWD=/home/hjc</value>
+    <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >QT_IM_MODULE=xim</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2937</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SSH_AGENT_PID=3041</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-zs3tHO/socket.ssh</value>
+    <value type="QString" >USER=hjc</value>
+    <value type="QString" >USERNAME=hjc</value>
+    <value type="QString" >WINDOWPATH=7</value>
+    <value type="QString" >XAUTHORITY=/home/hjc/.Xauthority</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
+    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1249175508.767688-1854872605</value>
+    <value type="QString" >XMODIFIERS=@im=SCIM</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >/home/hjc/myhome/code/finace-account/qt/finace-account.pro</value>
+    <value type="QString" >-spec</value>
+    <value type="QString" >/usr/share/qt4/mkspecs/linux-g++</value>
+    <value type="QString" >-r</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/qmake-qt4</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
+   <value key="buildConfiguration" type="int" >0</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Release-buildstep2</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-vVBxrcSAJy,guid=0080ac8ed479645b020e61694a74e7d6</value>
+    <value type="QString" >DESKTOP_SESSION=default.desktop</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >GDMSESSION=default.desktop</value>
+    <value type="QString" >GDM_LANG=zh_CN.UTF-8</value>
+    <value type="QString" >GDM_XSERVER_LOCATION=local</value>
+    <value type="QString" >GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
+    <value type="QString" >GNOME_KEYRING_SOCKET=/tmp/keyring-zs3tHO/socket</value>
+    <value type="QString" >GPG_AGENT_INFO=/tmp/seahorse-C7AuaH/S.gpg-agent:3083:1</value>
+    <value type="QString" >GTK_IM_MODULE=scim-bridge</value>
+    <value type="QString" >GTK_MODULES=canberra-gtk-module</value>
+    <value type="QString" >GTK_RC_FILES=/etc/gtk/gtkrc:/home/hjc/.gtkrc-1.2-gnome2</value>
+    <value type="QString" >HOME=/home/hjc</value>
+    <value type="QString" >LANG=zh_CN.UTF-8</value>
+    <value type="QString" >LOGNAME=hjc</value>
+    <value type="QString" >ORBIT_SOCKETDIR=/tmp/orbit-hjc</value>
+    <value type="QString" >PATH=/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</value>
+    <value type="QString" >PWD=/home/hjc</value>
+    <value type="QString" >QTDIR=/usr</value>
+    <value type="QString" >QT_IM_MODULE=xim</value>
+    <value type="QString" >SESSION_MANAGER=local/hjc-laptop:/tmp/.ICE-unix/2937</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SSH_AGENT_PID=3041</value>
+    <value type="QString" >SSH_AUTH_SOCK=/tmp/keyring-zs3tHO/socket.ssh</value>
+    <value type="QString" >USER=hjc</value>
+    <value type="QString" >USERNAME=hjc</value>
+    <value type="QString" >WINDOWPATH=7</value>
+    <value type="QString" >XAUTHORITY=/home/hjc/.Xauthority</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/local/share/:/usr/share/:/usr/share/gdm/</value>
+    <value type="QString" >XDG_SESSION_COOKIE=216721982dfdf25c9f1e06744a5eb936-1249175508.767688-1854872605</value>
+    <value type="QString" >XMODIFIERS=@im=SCIM</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >-w</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/hjc/myhome/code/finace-account/qt</value>
   </valuemap>
  </data>
  <data>
@@ -231,19 +310,25 @@
  <data>
   <variable>buildconfigurations</variable>
   <valuelist type="QVariantList" >
-   <value type="QString" >Debug</value>
    <value type="QString" >Release</value>
+   <value type="QString" >Debug</value>
   </valuelist>
  </data>
  <data>
   <variable>buildstep0</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
-   <value key="mkspec" type="QString" ></value>
   </valuemap>
  </data>
  <data>
   <variable>buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+   <value key="mkspec" type="QString" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildstep2</variable>
   <valuemap type="QVariantMap" >
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
   </valuemap>
@@ -251,6 +336,7 @@
  <data>
   <variable>buildsteps</variable>
   <valuelist type="QVariantList" >
+   <value type="QString" >trolltech.qt4projectmanager.gdbmaros</value>
    <value type="QString" >trolltech.qt4projectmanager.qmake</value>
    <value type="QString" >trolltech.qt4projectmanager.make</value>
   </valuelist>

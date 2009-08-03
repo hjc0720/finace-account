@@ -19,4 +19,4 @@ HEADERS += mainwindow.h \
     analysisDlg.h 
 FORMS += addrecorddlg.ui
 OTHER_FILES += 
-CONFIG += debug warn_on qt
+#CONFIG += debug warn_on qt

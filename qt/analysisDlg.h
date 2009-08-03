@@ -21,6 +21,8 @@
 
 
 #include	<QtGui/QDialog>
+
+#include	"../account.h"
 class QTableWidget;
 
 class analysisDlg : public QDialog { 
@@ -29,8 +31,11 @@ class analysisDlg : public QDialog {
 public:
     explicit analysisDlg(QWidget *parent = 0);
     virtual ~analysisDlg();
+public slots:
+    void refresh(vector<realRecord> & vNewReal);
 private:
     QTableWidget* pResult;
     QPushButton* pOk;
 };
+
 #endif

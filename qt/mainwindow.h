@@ -5,6 +5,7 @@
 #include <string>
 #include "../account.h"
 #include	"analysisDlg.h"
+#include	"../account.h"
 
 
 using namespace std;
@@ -13,12 +14,6 @@ class QTableWidget;
 class QDateEdit;
 class QLabel;
 class addRecordDlg;
-
-typedef struct _realRecord
-{
-    account* realAccount;
-    int recordIndex;
-}realRecord;
 
 class MainWindow : public QMainWindow
 {
