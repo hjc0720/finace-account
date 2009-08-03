@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
     //recordDlg = new addRecordDlg(this);
 
     analy = new analysisDlg(this);
+    connect(this,SIGNAL(dataRefresh(vector<realRecord>&)),analy,SLOT(refresh(vector<realRecord>&)));
 }
 
 float MainWindow::getTotalPay()
@@ -75,8 +76,9 @@ float MainWindow::getTotalPay()
     float sum = 0;
     for(int i = 0; i < nCount; i++)
     {
-        record tmpRecord = m_vRealRecord[i].realAccount->getRecordAt(i);
-        sum += tmpRecord.GetPay() / 100.f ;
+        record tmpRecord = m_vRealRecord[i].realAccount->getRecordAt(m_vRealRecord[i].recordIndex);
+        if(!(tmpRecord.GetType() == GiveToWife || tmpRecord.GetType() == GetFromWife))
+            sum += tmpRecord.GetPay() / 100.f ;
     }
     return sum;
 }
@@ -129,6 +131,7 @@ void MainWindow::createContextMenu()
 void MainWindow::showAnalys()
 {
     analy->show();
+    emit dataRefresh(m_vRealRecord);
 }
 
 void MainWindow::modifyRecord()
