@@ -40,6 +40,7 @@ private:
     void showAnalys();
     void dateChange();
     void modifyRecord();
+    void delRecord();
 
 private:
     QLabel* bankName;
@@ -53,6 +54,7 @@ private:
     QAction* action_save;
     QAction* action_addRecord;
     QAction* action_modifyRecord;
+    QAction* action_delRecord;
     QAction* action_exit;
     QAction* action_analys;
     QMenu* fileMenu;

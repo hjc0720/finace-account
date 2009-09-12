@@ -106,6 +106,9 @@ void MainWindow::createActions()
     action_modifyRecord ->setShortcut(tr("Ctrl+M"));
     connect(action_modifyRecord ,SIGNAL(triggered()),this,SLOT(modifyRecord()));
 
+    action_delRecord = new QAction(tr("&D删除记录"),this);
+    action_delRecord->setShortcut(tr("Del"));
+    connect(action_delRecord ,SIGNAL(triggered()),this,SLOT(delRecord()));
 }
 
 void MainWindow::createMenu()
@@ -118,12 +121,14 @@ void MainWindow::createMenu()
     editMenu = menuBar()->addMenu("&Edit");
     editMenu->addAction(action_addRecord);
     editMenu->addAction(action_modifyRecord);
+    editMenu->addAction(action_delRecord);
 }
 
 void MainWindow::createContextMenu()
 {
     table->addAction(action_modifyRecord);
     table->addAction(action_addRecord);
+    table->addAction(action_delRecord);
     //table->addAction(pasteAction);
     table->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
@@ -134,6 +139,16 @@ void MainWindow::showAnalys()
     emit dataRefresh(m_vRealRecord);
 }
 
+void MainWindow::delRecord()
+{
+    int row = table->currentRow();
+    if(row < 0)
+        return;
+    realRecord selRecord = m_vRealRecord[row];
+
+    selRecord.realAccount->delRecord(selRecord.recordIndex);
+    dateChange();
+}
 void MainWindow::modifyRecord()
 {
     int row = table->currentRow();
@@ -172,7 +187,6 @@ void MainWindow::modifyRecord()
             selectAccount = &m_cash;
         selectAccount->addRecord(newRecord);
         dateChange();
-
     }
     delete recordDlg;
 }
