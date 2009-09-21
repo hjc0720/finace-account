@@ -32,6 +32,7 @@ private:
     void setTableRow(account& nowAccount,record& nowRecord,float left,int row);
     void createContextMenu();
     float getTotalPay();
+    bool okToContinue();
 
 
  private slots:
@@ -51,12 +52,18 @@ private:
     QLabel* totalPay;
     QStatusBar* statusBar;
     QTableWidget* table;
+
     QAction* action_save;
+    QAction* action_load;
+    QAction* action_saveAs;
+    QAction* action_newFile;
     QAction* action_addRecord;
+    QAction* action_exit;
+
     QAction* action_modifyRecord;
     QAction* action_delRecord;
-    QAction* action_exit;
     QAction* action_analys;
+
     QMenu* fileMenu;
     QMenu* editMenu;
     QToolBar* dateToolBar;
@@ -64,16 +71,20 @@ private:
     QLabel* endDateLabel;
     QDateEdit* startDate;
     QDateEdit* endDate;
-    account m_bank;
-    account m_cash;
-    unsigned long m_nStartDate;
-    unsigned long m_nEndDate;
     const string fileName;
     const int tableColumnCount;
     //addRecordDlg* recordDlg;
-    vector<realRecord> m_vRealRecord;
 
     analysisDlg* analy;
+
+    QString curFile;
+private:
+    account m_bank;
+    account m_cash;
+    vector<realRecord> m_vRealRecord;
+    unsigned long m_nStartDate;
+    unsigned long m_nEndDate;
+
 
 };
 

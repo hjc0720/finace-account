@@ -363,3 +363,16 @@ void MainWindow::setTableRow(account& nowAccount,record& nowRecord,float left,in
     table->item(row,5)->setText(QString::number(left));
     table->item(row,6)->setText(QString::fromStdString(nowRecord.GetRemark()));
 }
+
+bool MainWindow::okToContinue()
+{
+    if(isWindowModified())
+    {
+        int r = QMessageBox::warning(this,tr("finace_account"),tr("The document is modified.\nDo you want to save your chnages?"),QMessageBox::Yes | QMessageBox::Default,QMessageBox::No,QMessageBox::Cancel | QMessageBox::Escape);
+        if(r == QMessageBox::Yes)
+            return save();
+        else
+            return false;
+    }
+    return true;
+}
