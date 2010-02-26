@@ -19,7 +19,9 @@ string typeString[PayIncomeTypeCount] =
 	"取出现金",
 	"给老婆钱",
 	"化妆品",
-	"交通费用"
+	"交通费用",
+    "医疗卫生",
+    "水电煤气",
 
 };
 

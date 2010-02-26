@@ -4,8 +4,8 @@
 #include <QtGui/QMainWindow>
 #include <string>
 #include "../account.h"
-#include	"analysisDlg.h"
-#include	"../account.h"
+#include "analysisDlg.h"
+#include "../account.h"
 
 
 using namespace std;
@@ -37,6 +37,7 @@ private:
 
  private slots:
     void save();
+    void load();
     void addRecord();
     void showAnalys();
     void dateChange();
@@ -71,7 +72,7 @@ private:
     QLabel* endDateLabel;
     QDateEdit* startDate;
     QDateEdit* endDate;
-    const string fileName;
+    string fileName;
     const int tableColumnCount;
     //addRecordDlg* recordDlg;
 
@@ -84,8 +85,6 @@ private:
     vector<realRecord> m_vRealRecord;
     unsigned long m_nStartDate;
     unsigned long m_nEndDate;
-
-
 };
 
 #endif // MAINWINDOW_H
