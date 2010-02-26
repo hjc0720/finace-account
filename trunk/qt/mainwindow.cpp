@@ -11,6 +11,8 @@
 #include <string>
 #include <QStatusBar>
 #include "addrecorddlg.h"
+#include <qmessagebox.h>
+#include <QFileDialog>
 
 using namespace std;
 
@@ -89,6 +91,10 @@ void MainWindow::createActions()
     action_save->setShortcut(tr("Ctrl+S"));
     connect(action_save,SIGNAL(triggered()),this,SLOT(save()));
 
+    action_load = new QAction(tr("&Load"),this);
+    action_load->setShortcut(tr("Ctrl+L"));
+    connect(action_load,SIGNAL(triggered()),this,SLOT(load()));
+
     action_exit = new QAction(tr("&Quit"),this);
     action_exit->setShortcut(tr("Ctrl+Q"));
     connect(action_exit,SIGNAL(triggered()),this,SLOT(close()));
@@ -115,6 +121,7 @@ void MainWindow::createMenu()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(action_save);
+    fileMenu->addAction(action_load);
     fileMenu->addAction(action_exit);
     fileMenu->addAction(action_analys);
 
@@ -226,6 +233,7 @@ MainWindow::~MainWindow()
 {
     delete fileMenu;
     delete action_save;
+    delete action_load;
     delete action_exit;
 }
 
@@ -261,6 +269,20 @@ void MainWindow::save()
 
     }
     ofile.close();
+}
+
+void MainWindow::load()
+{
+    if(okToContinue())
+    {
+        QString QFileName = QFileDialog::getOpenFileName(this, tr("Open Record"));
+        if(!QFileName.isEmpty())
+        {
+            fileName = QFileName.toStdString();
+            initial();
+            emit dataRefresh(m_vRealRecord);
+        }
+    }
 }
 
 void MainWindow::dateChange()
@@ -370,7 +392,10 @@ bool MainWindow::okToContinue()
     {
         int r = QMessageBox::warning(this,tr("finace_account"),tr("The document is modified.\nDo you want to save your chnages?"),QMessageBox::Yes | QMessageBox::Default,QMessageBox::No,QMessageBox::Cancel | QMessageBox::Escape);
         if(r == QMessageBox::Yes)
-            return save();
+        {
+            save();
+            return true;
+        }
         else
             return false;
     }

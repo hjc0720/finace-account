@@ -16,6 +16,8 @@ enum payIncomeType{
 	GiveToWife,
 	Cosmetics,
 	Traffic,
+    PayForMedical,
+    PayForElectricWatergas,
 	PayIncomeTypeCount,
 };
 
@@ -37,8 +39,8 @@ class record
 		void print(ostream& out);
 		long GetIncome()const{return m_income;};
 		long GetPay() const {return m_pay;};
-		unsigned char GetType() const {return m_type;};
-		unsigned long GetDate(){return m_date;};
+		inline unsigned char GetType() const {return m_type;};
+		inline unsigned long GetDate(){return m_date;};
                 string GetRemark(){return m_remark;};
 		bool operator<( record const& rhs) const;
 };

@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 
+
 class account{
 	private:
 		vector<record> m_vRecord;
@@ -49,4 +50,12 @@ class account{
 		void clearInvalidRecord(ostream& out);
 		void clearRecordList(){m_vDeleteRecordList.clear(); };
 };
+
+typedef struct _realRecord
+{
+    account* realAccount;
+    int recordIndex;
+}realRecord;
+
+
 #endif
