@@ -4,6 +4,15 @@
 #include "../basefunction.h"
 #include <string>
 
+unsigned long TPF_Long(float number)
+{
+    if(number > 0)
+        number += 0.5f;
+    else
+        number -= 0.5f;
+    return (unsigned long)number;
+}
+
 using namespace std;
 extern string typeString[PayIncomeTypeCount];
 
@@ -61,7 +70,7 @@ unsigned long addRecordDlg::getIncome()
     QString sumString = m_ui->sum->text();
     float  lSum = sumString.toFloat();
     if(lSum > 0)
-        return (unsigned long)(lSum * 100);
+        return TPF_Long(lSum * 100);
     else
         return 0;
 }
@@ -73,7 +82,7 @@ unsigned long addRecordDlg::getPay()
     if(lSum < 0)
     {
         lSum = -lSum;
-        return (unsigned long )(lSum * 100);
+        return TPF_Long(lSum * 100);
     }
     else
         return 0;
