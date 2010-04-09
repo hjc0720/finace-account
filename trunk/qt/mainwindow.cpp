@@ -79,8 +79,13 @@ float MainWindow::getTotalPay()
     for(int i = 0; i < nCount; i++)
     {
         record tmpRecord = m_vRealRecord[i].realAccount->getRecordAt(m_vRealRecord[i].recordIndex);
-        if(!(tmpRecord.GetType() == GiveToWife || tmpRecord.GetType() == GetFromWife))
-            sum += tmpRecord.GetPay() / 100.f ;
+        if(tmpRecord.GetPay() == GetFromWife ||
+           tmpRecord.GetPay() ==  GetFromCard ||
+           tmpRecord.GetPay() == Salary ||
+           tmpRecord.GetPay() == GetCash ||
+           tmpRecord.GetPay() == GiveToWife)
+            continue;
+        sum += tmpRecord.GetPay() / 100.f ;
     }
     return sum;
 }
