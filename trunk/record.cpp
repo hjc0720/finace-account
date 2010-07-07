@@ -22,6 +22,7 @@ string typeString[PayIncomeTypeCount] =
 	"交通费用",
     "医疗卫生",
     "水电煤气",
+    "娱乐消费",
 
 };
 
