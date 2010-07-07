@@ -10,13 +10,18 @@ SOURCES += main.cpp \
     ../basefunction.cpp \
     addrecorddlg.cpp \
     analysisDlg.cpp \
+    createaccountdlg.cpp \
+    accountuser.cpp
 
 HEADERS += mainwindow.h \
     ../record.h \
     ../basefunction.h \
     ../account.h \
     addrecorddlg.h\
-    analysisDlg.h 
-FORMS += addrecorddlg.ui
+    analysisDlg.h \ 
+    createaccountdlg.h \
+    accountuser.h
+FORMS += addrecorddlg.ui \
+    createaccountdlg.ui
 OTHER_FILES += 
 #CONFIG += debug warn_on qt

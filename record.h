@@ -16,8 +16,9 @@ enum payIncomeType{
 	GiveToWife,
 	Cosmetics,
 	Traffic,
-    PayForMedical,
-    PayForElectricWatergas,
+        PayForMedical,
+        PayForElectricWatergas,
+        PayForEntainment,
 	PayIncomeTypeCount,
 };
 
