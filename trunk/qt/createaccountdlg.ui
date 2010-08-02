@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>228</width>
-    <height>83</height>
+    <width>249</width>
+    <height>149</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -31,7 +31,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QFormLayout" name="formLayout">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -39,12 +39,40 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
+          <string>用户名称</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="UserName"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
           <string>帐户名称</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="NewAccountName"/>
+        <widget class="QLineEdit" name="AccountName"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>帐户初始金额</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="initSum"/>
        </item>
       </layout>
      </item>

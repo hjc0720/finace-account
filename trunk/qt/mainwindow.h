@@ -6,30 +6,44 @@
 #include "../account.h"
 #include "analysisDlg.h"
 #include "../account.h"
+#include "accountuser.h"
+#include <QLabel>
+#include "../basefunction.h"
 
 
 using namespace std;
 
 class QTableWidget;
 class QDateEdit;
-class QLabel;
 class addRecordDlg;
+
+class accountInfoLabel
+{
+public:
+    accountInfoLabel(){ accountName = new QLabel; accountLeft = new QLabel;}
+    ~accountInfoLabel(){SAFEDELETE(accountName);SAFEDELETE(accountLeft);}
+    void setNameText(const QString& text){accountName->setText(text);}
+    void setLeftText(const QString& text){accountLeft->setText(text);}
+
+    QLabel* accountName;
+    QLabel* accountLeft;
+};
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0,QString fileName = QString(tr("../accountRecord")));
     ~MainWindow();
     void createActions();
     void createMenu();
     void initial();
 signals:
     void dataRefresh(vector<realRecord>&);
-private:
+protected:
     void initialTable();
-    void setTableRow(account& nowAccount,record& nowRecord,float left,int row);
+    void setTableRow(account& nowAccount,const record& nowRecord,float left,int row);
     void createContextMenu();
     float getTotalPay();
     bool okToContinue();
@@ -37,6 +51,7 @@ private:
 
  private slots:
     void save();
+    void import(); 
     void load();
     void addRecord();
     void showAnalys();
@@ -45,10 +60,7 @@ private:
     void delRecord();
 
 private:
-    QLabel* bankName;
-    QLabel* cashName;
-    QLabel* bankLeft;
-    QLabel* cashLeft;
+    vector<accountInfoLabel*> arInfoLabel;
     QLabel* totalPayName;
     QLabel* totalPay;
     QStatusBar* statusBar;
@@ -56,14 +68,17 @@ private:
 
     QAction* action_save;
     QAction* action_load;
-    QAction* action_saveAs;
     QAction* action_newFile;
     QAction* action_addRecord;
     QAction* action_exit;
+    QAction* action_import;
 
     QAction* action_modifyRecord;
     QAction* action_delRecord;
     QAction* action_analys;
+    QAction* action_user_manager;
+    QAction* action_changeUser;
+    QAction* action_AccountManage;
 
     QMenu* fileMenu;
     QMenu* editMenu;
@@ -72,7 +87,7 @@ private:
     QLabel* endDateLabel;
     QDateEdit* startDate;
     QDateEdit* endDate;
-    string fileName;
+    QString filePath;
     const int tableColumnCount;
     //addRecordDlg* recordDlg;
 
@@ -80,8 +95,10 @@ private:
 
     QString curFile;
 private:
-    account m_bank;
-    account m_cash;
+    vector<AccountUser> m_arUser;
+    int                 m_curUser;
+//    account m_bank;
+//    account m_cash;
     vector<realRecord> m_vRealRecord;
     unsigned long m_nStartDate;
     unsigned long m_nEndDate;

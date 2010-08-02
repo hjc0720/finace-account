@@ -15,7 +15,9 @@ class CreateAccountDlg : public QDialog
 public:
     explicit CreateAccountDlg(QWidget *parent = 0);
     ~CreateAccountDlg();
-    inline QString getNewAccountName()const;
+    QString getNewUserName()const;
+    QString getNewAccountName()const;
+    bool getAccountInitSum(int& sum)const;
 
 private:
     Ui::CreateAccountDlg *ui;
