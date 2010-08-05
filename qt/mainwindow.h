@@ -39,6 +39,7 @@ public:
     void createActions();
     void createMenu();
     void initial();
+    QString m_homePath;
 signals:
     void dataRefresh(vector<realRecord>&);
 protected:
@@ -58,6 +59,7 @@ protected:
     void dateChange();
     void modifyRecord();
     void delRecord();
+    void userManage();
 
 private:
     vector<accountInfoLabel*> arInfoLabel;
@@ -93,7 +95,6 @@ private:
 
     analysisDlg* analy;
 
-    QString curFile;
 private:
     vector<AccountUser> m_arUser;
     int                 m_curUser;

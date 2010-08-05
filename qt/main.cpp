@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
            return 0;
    }
     MainWindow w(NULL,homeDir.path());
+    w.m_homePath = homeDir.absolutePath();
     w.initial();
     w.show();
     return a.exec();
