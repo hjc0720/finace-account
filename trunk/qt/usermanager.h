@@ -15,12 +15,26 @@
  *
  * =====================================================================================
  */
+#pragma once
+#include <QDialog>
+#include <QString>
 
+class QListWidget;
+class QPushButton;
 
 class userManagerDlg : public QDialog {
     Q_OBJECT
-    Q_DISABLE_COPY(addRecordDlg)
+    Q_DISABLE_COPY(userManagerDlg)
 public:
     explicit userManagerDlg(QWidget* parent = 0);
     virtual ~userManagerDlg();
-}
+
+    QString m_homePath;
+protected:
+    QListWidget* pUserList;
+    QPushButton* pAddUserBt;
+    QPushButton* pEditUserBt;
+    QPushButton* pDelUserBt;
+    QPushButton* pOK;
+    QPushButton* pCancel;
+};

@@ -14,7 +14,7 @@ SOURCES += main.cpp \
     analysisDlg.cpp \
     createaccountdlg.cpp \
     accountuser.cpp \ 
-    userManagerDlg.cpp
+    usermanager.cpp
 HEADERS += mainwindow.h \
     ../record.h \
     ../basefunction.h \
@@ -23,7 +23,7 @@ HEADERS += mainwindow.h \
     analysisDlg.h \
     createaccountdlg.h \
     accountuser.h \
-    userManagerDlg.h
+    usermanager.h
 FORMS += addrecorddlg.ui \
     createaccountdlg.ui
 OTHER_FILES += 

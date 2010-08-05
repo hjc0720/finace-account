@@ -14,6 +14,7 @@
 #include <qmessagebox.h>
 #include <QFileDialog>
 #include <QTextStream>
+#include "usermanager.h"
 
 using namespace std;
 
@@ -92,7 +93,7 @@ void MainWindow::createActions()
     connect(action_save,SIGNAL(triggered()),this,SLOT(save()));
 
     action_import = new QAction(tr("&Import"),this);
-    action_import->setShortcut(tr("Ctrl+S"));
+    action_import->setShortcut(tr("Ctrl+I"));
     connect(action_import,SIGNAL(triggered()),this,SLOT(import()));
 
     action_load = new QAction(tr("&Load"),this);
@@ -119,6 +120,9 @@ void MainWindow::createActions()
     action_delRecord = new QAction(tr("&D删除记录"),this);
     action_delRecord->setShortcut(tr("Del"));
     connect(action_delRecord ,SIGNAL(triggered()),this,SLOT(delRecord()));
+
+    action_user_manager = new QAction(tr("用户管理"),this);
+    connect(action_user_manager,SIGNAL(triggered()),this,SLOT(userManage()));
 }
 
 void MainWindow::createMenu()
@@ -134,6 +138,7 @@ void MainWindow::createMenu()
     editMenu->addAction(action_addRecord);
     editMenu->addAction(action_modifyRecord);
     editMenu->addAction(action_delRecord);
+    editMenu->addAction(action_user_manager);
 }
 
 void MainWindow::createContextMenu()
@@ -149,6 +154,12 @@ void MainWindow::showAnalys()
 {
     analy->show();
     emit dataRefresh(m_vRealRecord);
+}
+
+void MainWindow::userManage()
+{
+    userManagerDlg dlg;
+    dlg.exec();
 }
 
 void MainWindow::delRecord()
