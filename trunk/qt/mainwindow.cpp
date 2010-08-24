@@ -14,6 +14,8 @@
 #include <qmessagebox.h>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QStringList>
+#include <QInputDialog>
 #include "usermanager.h"
 
 using namespace std;
@@ -53,10 +55,7 @@ MainWindow::MainWindow(QWidget *parent,QString fileName)
     totalPay     = new QLabel(this);
 
     statusBar = new QStatusBar(this);
-//    statusBar->addWidget(bankName);
-//    statusBar->addWidget(bankLeft);
-//   statusBar->addWidget(cashName);
-//   statusBar->addWidget(cashLeft);
+
     statusBar->addWidget(totalPay);
     statusBar->addWidget(totalPayName);
     statusBar->addWidget(totalPay);
@@ -66,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent,QString fileName)
 
     analy = new analysisDlg(this);
     connect(this,SIGNAL(dataRefresh(vector<realRecord>&)),analy,SLOT(refresh(vector<realRecord>&)));
+    m_curUser = 0;
 }
 
 float MainWindow::getTotalPay()
@@ -123,6 +123,9 @@ void MainWindow::createActions()
 
     action_user_manager = new QAction(tr("用户管理"),this);
     connect(action_user_manager,SIGNAL(triggered()),this,SLOT(userManage()));
+
+    action_changeUser = new QAction(tr("change user"),this);
+    connect(action_changeUser,SIGNAL(triggered()),this,SLOT(changeUser()));
 }
 
 void MainWindow::createMenu()
@@ -139,6 +142,7 @@ void MainWindow::createMenu()
     editMenu->addAction(action_modifyRecord);
     editMenu->addAction(action_delRecord);
     editMenu->addAction(action_user_manager);
+    editMenu->addAction(action_changeUser);
 }
 
 void MainWindow::createContextMenu()
@@ -156,10 +160,31 @@ void MainWindow::showAnalys()
     emit dataRefresh(m_vRealRecord);
 }
 
+void MainWindow::changeUser()
+{
+    QStringList userList;
+    for(size_t i = 0; i < m_arUser.size(); ++i)
+    {
+        userList<<m_arUser[i].getUserName();
+    } 
+    bool isOk = false;
+    QString returnString = QInputDialog::getItem(this,tr("change user"),tr("user Name"),userList,m_curUser,false,&isOk);
+    if(isOk)
+    {
+        m_curUser = max(0,userList.indexOf(returnString));
+        m_arUser[m_curUser].load();
+        dateChange();
+    }
+}
+
 void MainWindow::userManage()
 {
+    save();
     userManagerDlg dlg;
+    dlg.m_homePath = filePath;
+    dlg.initial();
     dlg.exec();
+    load();
 }
 
 void MainWindow::delRecord()
@@ -188,7 +213,7 @@ void MainWindow::modifyRecord()
     {
         account& nowAccount = nowUser.getAccount(i);
         recordDlg->addAccountName(QString::fromStdString(nowAccount.getName()));
-        if(selRecord.realAccount->getName() != nowAccount.getName())
+        if(selRecord.realAccount->getName() == nowAccount.getName())
             nAccount = i;
 
     }
@@ -263,6 +288,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initial()
 {
+    m_arUser.clear();
     QFile userFile(filePath + "/userName");
     if(userFile.open(QIODevice::ReadOnly))
     {
@@ -276,7 +302,6 @@ void MainWindow::initial()
         }
     }
     userFile.close();
-    m_curUser = 0;
     m_arUser[m_curUser].load();
     for(int i = 0; i < m_arUser[m_curUser].getAccountCount(); ++i)
     {

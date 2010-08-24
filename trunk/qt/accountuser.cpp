@@ -32,9 +32,9 @@ void AccountUser::save()const
     if(m_path.count() <= 0)
         return;
     ofstream outFile(m_path.toStdString().c_str()); 
-    int nNameLen = m_name.size();
-    outFile.write((char*)&nNameLen,sizeof(int));
-    outFile.write(m_name.toStdString().c_str(),nNameLen);
+//    int nNameLen = m_name.size();
+//    outFile.write((char*)&nNameLen,sizeof(int));
+//    outFile.write(m_name.toStdString().c_str(),nNameLen);
 
     int nAccountCount = m_accountArray.size();
     outFile.write((char*)&nAccountCount,sizeof(int));
@@ -51,11 +51,11 @@ void AccountUser::load()
         return;
     ifstream inFile(m_path.toStdString().c_str()); 
     int nNameLen  = 0; 
-    inFile.read((char*)&nNameLen,sizeof(int));
+    //inFile.read((char*)&nNameLen,sizeof(int));
     char* name = new char[nNameLen + 1];
-    inFile.read(name,nNameLen);
+   // inFile.read(name,nNameLen);
     name[nNameLen] = 0;
-    m_name = name;
+    //m_name = name;
 
     int nAccountCount = 0;
     inFile.read((char*)&nAccountCount,sizeof(int));
@@ -100,5 +100,5 @@ void AccountUser::fillAllValidateRecord(vector<realRecord>& arRealRecord,unsigne
             arRealRecord.push_back(newReal);
         }
     }
-    sort(arRealRecord.begin(),arRealRecord.end());
+    stable_sort(arRealRecord.begin(),arRealRecord.end());
 }

@@ -28,6 +28,7 @@ class userManagerDlg : public QDialog {
 public:
     explicit userManagerDlg(QWidget* parent = 0);
     virtual ~userManagerDlg();
+    void initial();
 
     QString m_homePath;
 protected:
@@ -36,5 +37,9 @@ protected:
     QPushButton* pEditUserBt;
     QPushButton* pDelUserBt;
     QPushButton* pOK;
-    QPushButton* pCancel;
+protected slots:
+    void RenameUser();
+    void DelUser();
+    void AddUser();
+    void OnClose();
 };

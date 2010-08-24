@@ -45,12 +45,12 @@ int main(int argc, char *argv[])
         if(!CreateNewUser(homeDir.path()))
             return 0;
    }
-   else if(!homeDir.exists("userName"))
+   if(!homeDir.exists("userName"))
    {
        if(!CreateNewUser(homeDir.path()))
            return 0;
    }
-    MainWindow w(NULL,homeDir.path());
+    MainWindow w(NULL,homeDir.absolutePath());
     w.m_homePath = homeDir.absolutePath();
     w.initial();
     w.show();
