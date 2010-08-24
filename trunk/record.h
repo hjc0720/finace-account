@@ -35,14 +35,14 @@ class record
 		~record();
 
 		void initial(unsigned long date, unsigned long pay, unsigned char type,unsigned long income, const string& remark);
-		void save(ofstream& outFile);
+		void save(ofstream& outFile)const ;
 		void load(ifstream& inFile);
-		void print(ostream& out);
+		void print(ostream& out)const;
 		long GetIncome()const{return m_income;};
 		long GetPay() const {return m_pay;};
 		inline unsigned char GetType() const {return m_type;};
-		inline unsigned long GetDate(){return m_date;};
-                string GetRemark(){return m_remark;};
+		inline unsigned long GetDate()const {return m_date;};
+        string GetRemark()const {return m_remark;};
 		bool operator<( record const& rhs) const;
 };
 #endif

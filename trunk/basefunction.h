@@ -4,6 +4,13 @@
 #include <string>
 using namespace std;
 
+#ifndef SAFEDELETE
+#define SAFEDELETE(p)   {if(p) {delete p;p = NULL;}}
+#endif
+
+#ifndef SAFEDELETE_ARRAY
+#define SAFEDELETE_ARRAY {if(p) {delete []p;p = NULL;}}
+#endif
 
 string dateToString(unsigned long date);
 unsigned long stringToDate(const string& dateString);

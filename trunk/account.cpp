@@ -20,7 +20,7 @@ account::account(string name, int initialCash/*= 0*/)
 	m_endDate = m_startDate = m_setDate = 0;
 }
 
-void account::save(ofstream& outFile)
+void account::save(ofstream& outFile) const
 {
 	int nameSize = m_name.size();
 	outFile.write((char*)&nameSize,sizeof(int));
@@ -56,7 +56,7 @@ void account::load(ifstream& inFile)
 	reCalculate();
 }
 
-void account::print(ostream& out)
+void account::print(ostream& out)const
 {
 	out << m_name << endl;
 
@@ -110,7 +110,7 @@ void account::getMonthStartEnd(unsigned long date, int& start, int& end)
         getStartEnd(startDate,endDate-1,start,end);
 }
 
-void account::print(ostream& out,int start, int end,int* startIndex/* = NULL*/)
+void account::print(ostream& out,int start, int end,int* startIndex/* = NULL*/)const
 {
 //	out << getName() << "\t余额：" <<getTotalLeft() << endl;
 	for(int i = start; i <= end; i++)
@@ -149,7 +149,7 @@ void account::clearInvalidRecord(ostream& out)
 	}
 }
 
-void account::getStartEnd(unsigned long startDate,unsigned long endDate,int &start, int& end)
+void account::getStartEnd(unsigned long startDate,unsigned long endDate,int &start, int& end)const
 {
         int nCount = m_vRecord.size(),i;
         for(i = 0; i < nCount; i++)

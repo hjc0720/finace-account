@@ -44,7 +44,7 @@ void record::initial(unsigned long date, unsigned long pay, unsigned char type,u
 	m_income = income;
 }
 
-void record::save(ofstream& outFile)
+void record::save(ofstream& outFile) const 
 {
 	int nSize = m_remark.size();
 	outFile.write((char*)&m_date,sizeof(unsigned long));
@@ -71,7 +71,7 @@ void record::load(ifstream& inFile)
 	delete []readString;
 }
 
-void record::print(ostream& out)
+void record::print(ostream& out)const
 {
 	out << dateToString(m_date)<< '\t';
 	out << typeString[m_type] << "\t";
