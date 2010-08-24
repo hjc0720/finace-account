@@ -50,7 +50,7 @@ protected:
     bool okToContinue();
 
 
- private slots:
+protected slots:
     void save();
     void import(); 
     void load();
@@ -60,6 +60,7 @@ protected:
     void modifyRecord();
     void delRecord();
     void userManage();
+    void changeUser();
 
 private:
     vector<accountInfoLabel*> arInfoLabel;

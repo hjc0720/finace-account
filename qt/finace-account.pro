@@ -3,7 +3,7 @@
 # -------------------------------------------------
 TARGET = finace-account
 DESTDIR = $(HOME)/bin
-DEFINES += DEBUG
+#DEFINES += DEBUG
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
@@ -27,6 +27,6 @@ HEADERS += mainwindow.h \
 FORMS += addrecorddlg.ui \
     createaccountdlg.ui
 OTHER_FILES += 
-CONFIG += debug \
+CONFIG += sse2 sse release \
     warn_on \
-    qt
+    qt 
