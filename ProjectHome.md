@@ -1,0 +1,1 @@
+record the cash you pay or you earn.
